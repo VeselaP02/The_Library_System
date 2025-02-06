@@ -2,6 +2,7 @@ package book_library.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,10 +20,13 @@ public class Book {
     @Column(nullable = false)
     private String author;
 
-    private String genre;
+    @Column(nullable = false)
+    private Genre genre;
 
     private Boolean isAvailable = true;
 
+    @Column (name = "release_date", nullable = false)
+    private LocalDate releaseDate;
 
     @OneToMany(mappedBy = "book",targetEntity = BorrowRecords.class)
     private Set<BorrowRecords> borrowRecords;
@@ -31,11 +35,11 @@ public class Book {
         this.borrowRecords = new HashSet<>();
     }
 
-    public Book(String title, String author, String genre) {
-        this();
+    public Book(String title, String author, Genre genre, LocalDate releaseDate) {
         this.title = title;
         this.author = author;
         this.genre = genre;
+        this.releaseDate = releaseDate;
     }
 
     public Long getId() {
@@ -62,12 +66,20 @@ public class Book {
         this.author = author;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public Boolean getAvailable() {
@@ -85,4 +97,6 @@ public class Book {
     public void setBorrowRecords(Set<BorrowRecords> borrowRecords) {
         this.borrowRecords = borrowRecords;
     }
+
+
 }
