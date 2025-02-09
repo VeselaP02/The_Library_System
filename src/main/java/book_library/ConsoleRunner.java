@@ -1,5 +1,6 @@
 package book_library;
 
+import book_library.entities.Author;
 import book_library.entities.Book;
 import book_library.entities.Genre;
 import book_library.entities.User;
@@ -29,7 +30,8 @@ public class ConsoleRunner implements CommandLineRunner {
         User user = new User("vesi1456","kaKA896");
         userService.registerUser(user);
 
-        Book book = new Book("After","Anna Todd", Genre.Romance,LocalDate.parse("2006-10-15", DateTimeFormatter.ISO_LOCAL_DATE));
+        Author author = new Author("Anna","Todd");
+        Book book = new Book("After", Genre.Romance,LocalDate.parse("2006-10-15", DateTimeFormatter.ISO_LOCAL_DATE),author);
         bookService.findBook(book);
 
         borrowRecordsService.borrowBook(user,book);

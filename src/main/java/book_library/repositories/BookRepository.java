@@ -8,6 +8,5 @@ import java.nio.file.LinkOption;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-
     Book findByTitle(String title);
 }

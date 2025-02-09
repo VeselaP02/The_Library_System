@@ -7,10 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class User extends BaseEntitiesWithLongId {
     private Long id;
 
     @Column(unique = true,nullable = false)
