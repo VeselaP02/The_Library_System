@@ -11,14 +11,9 @@ public class BookServiceImpl implements BookService{
     @Autowired
     private  BookRepository bookRepository;
     @Override
-    public void findBook(Book book) {
+    public Book addBook(Book book) {
 
-        Book foundBook = this.bookRepository.findByTitle(book.getTitle());
+        return bookRepository.save(book);
 
-        if (foundBook == null){
-            bookRepository.save(book);
-        } else {
-            throw new RuntimeException("Book is not found");
-        }
     }
 }

@@ -5,15 +5,10 @@ import jakarta.persistence.*;
 @MappedSuperclass
 public class BaseEntitiesWithLongId {
 
-
-    private Long id;
-
-    protected BaseEntitiesWithLongId() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    private Long id;
+
     public Long getId() {
         return id;
     }

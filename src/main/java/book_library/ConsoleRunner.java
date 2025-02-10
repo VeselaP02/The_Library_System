@@ -4,6 +4,7 @@ import book_library.entities.Author;
 import book_library.entities.Book;
 import book_library.entities.Genre;
 import book_library.entities.User;
+import book_library.services.AuthorService;
 import book_library.services.BookService;
 import book_library.services.BorrowRecordsService;
 import book_library.services.UserService;
@@ -25,14 +26,16 @@ public class ConsoleRunner implements CommandLineRunner {
     @Autowired
     private BorrowRecordsService borrowRecordsService;
 
+    @Autowired
+    private AuthorService authorService;
+
     @Override
     public void run(String... args) throws Exception {
-        User user = new User("vesi1456","kaKA896");
-        userService.registerUser(user);
+        User user = userService.registerUser(new User("vesi1456","kaKA896",LocalDate.now(),LocalDate.now()));
 
-        Author author = new Author("Anna","Todd");
-        Book book = new Book("After", Genre.Romance,LocalDate.parse("2006-10-15", DateTimeFormatter.ISO_LOCAL_DATE),author);
-        bookService.findBook(book);
+
+        Author author = authorService.addAuthor(new Author("Anna","Todd"));
+        Book book =bookService.addBook(new Book("After", Genre.Romance,LocalDate.parse("2006-10-15", DateTimeFormatter.ISO_LOCAL_DATE),author));
 
         borrowRecordsService.borrowBook(user,book);
 

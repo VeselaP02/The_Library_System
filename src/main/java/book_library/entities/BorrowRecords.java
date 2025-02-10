@@ -12,11 +12,11 @@ public class BorrowRecords {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book_id",nullable = false)
     private Book book;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
     private LocalDate borrowDate;

@@ -2,7 +2,6 @@ package book_library.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +14,7 @@ public class Author extends BaseEntitiesWithLongId{
     private String lastName;
 
 
-    @OneToMany(mappedBy = "author",targetEntity = Book.class)
+    @OneToMany(mappedBy = "author")
     private Set<Book> books;
 
     public Author() {

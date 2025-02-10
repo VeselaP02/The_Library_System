@@ -14,18 +14,20 @@ public class Book extends BaseEntitiesWithLongId {
     private String title;
 
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Genre genre;
 
+    @Column(name = "is_available")
     private Boolean isAvailable = true;
 
     @Column (name = "release_date", nullable = false)
     private LocalDate releaseDate;
 
-    @ManyToOne(targetEntity = Author.class)
+    @ManyToOne(optional = false)
     private Author author;
 
-    @OneToMany(mappedBy = "book",targetEntity = BorrowRecords.class)
+    @OneToMany(mappedBy = "book")
     private Set<BorrowRecords> borrowRecords;
 
     public Book() {

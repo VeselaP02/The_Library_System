@@ -5,21 +5,21 @@ import book_library.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
+
+
+
     @Override
-    public void registerUser(User user) {
+    public User registerUser(User user) {
 
-        User foundUser = this.userRepository.findByUsername(user.getUsername());
+           return userRepository.save(user);
 
-        if (foundUser == null){
-            userRepository.save(user);
-        } else {
-            throw  new RuntimeException("User is not found");
-        }
     }
 }
