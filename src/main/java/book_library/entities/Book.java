@@ -13,13 +13,12 @@ public class Book extends BaseEntitiesWithLongId {
     @Column(nullable = false)
     private String title;
 
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Genre genre;
 
     @Column(name = "is_available")
-    private Boolean isAvailable = true;
+    private Boolean isAvailable;
 
     @Column (name = "release_date", nullable = false)
     private LocalDate releaseDate;
@@ -34,15 +33,16 @@ public class Book extends BaseEntitiesWithLongId {
         this.borrowRecords = new HashSet<>();
     }
 
-    public Book(String title, Genre genre, LocalDate releaseDate, Author author) {
+    public Book(String title, Genre genre,Boolean isAvailable, LocalDate releaseDate, Author author) {
         this();
 
         this.title = title;
         this.genre = genre;
+        this.setAvailable(isAvailable);
+        this.isAvailable = true;
         this.releaseDate = releaseDate;
         this.author = author;
     }
-
 
     public String getTitle() {
         return title;

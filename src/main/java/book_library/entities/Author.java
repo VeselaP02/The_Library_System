@@ -7,12 +7,12 @@ import java.util.Set;
 
 @Entity(name = "authors")
 public class Author extends BaseEntitiesWithLongId{
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
-
 
     @OneToMany(mappedBy = "author")
     private Set<Book> books;
@@ -26,7 +26,6 @@ public class Author extends BaseEntitiesWithLongId{
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
 
     public String getFirstName() {
         return firstName;

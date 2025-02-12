@@ -26,13 +26,17 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService{
     public void borrowBook(User user, Book book) {
         if (book.getAvailable()){
             BorrowRecords borrowRecords = new BorrowRecords();
+
             borrowRecords.setUser(user);
+
             borrowRecords.setBook(book);
+
             borrowRecords.setBorrowDate(LocalDate.now());
 
             book.setAvailable(false);
 
             borrowRecordRepository.save(borrowRecords);
+
             bookRepository.save(book);
 
         } else {
@@ -48,9 +52,11 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService{
 
         if (foundBorrow != null){
             foundBorrow.setReturnDate(LocalDate.now());
+
             book.setAvailable(false);
 
             borrowRecordRepository.save(foundBorrow);
+
             bookRepository.save(book);
         } else {
             throw new RuntimeException("No active borrow record found");

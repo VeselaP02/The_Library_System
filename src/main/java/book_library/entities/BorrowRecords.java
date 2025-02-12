@@ -20,6 +20,7 @@ public class BorrowRecords {
     private User user;
 
     private LocalDate borrowDate;
+
     private LocalDate returnDate;
 
     public BorrowRecords() {

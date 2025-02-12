@@ -37,7 +37,6 @@ public class User extends BaseEntitiesWithLongId {
         this.lastTimeLoggedIn = lastTimeLoggedIn;
     }
 
-
     public String getUsername() {
         return username;
     }
