@@ -33,12 +33,11 @@ public class Book extends BaseEntitiesWithLongId {
         this.borrowRecords = new HashSet<>();
     }
 
-    public Book(String title, Genre genre,Boolean isAvailable, LocalDate releaseDate, Author author) {
+    public Book(String title, Genre genre, LocalDate releaseDate, Author author) {
         this();
 
         this.title = title;
         this.genre = genre;
-        this.setAvailable(isAvailable);
         this.isAvailable = true;
         this.releaseDate = releaseDate;
         this.author = author;

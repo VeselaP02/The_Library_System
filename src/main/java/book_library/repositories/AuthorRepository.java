@@ -9,5 +9,5 @@ import java.time.LocalDate;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author,Long> {
 
-    Author getAuthorById(Long id);
+    Author findAuthorById(Long id);
 }

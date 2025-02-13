@@ -6,12 +6,13 @@ import book_library.entities.User;
 import book_library.repositories.BookRepository;
 import book_library.repositories.BorrowRecordRepository;
 import book_library.repositories.UserRepository;
+import book_library.services.interfaces.BorrowRecordsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 @Service
-public class BorrowRecordsServiceImpl implements BorrowRecordsService{
+public class BorrowRecordsServiceImpl implements BorrowRecordsService {
 
     @Autowired
     private BookRepository bookRepository;

@@ -1,4 +1,4 @@
-package book_library.services;
+package book_library.services.interfaces;
 
 import book_library.entities.User;
 
