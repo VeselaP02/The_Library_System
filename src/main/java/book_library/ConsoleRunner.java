@@ -2,7 +2,7 @@ package book_library;
 
 import book_library.entities.Author;
 import book_library.entities.Book;
-import book_library.entities.Genre;
+import book_library.enums.Genre;
 import book_library.entities.User;
 import book_library.services.interfaces.AuthorService;
 import book_library.services.interfaces.BookService;
@@ -33,6 +33,7 @@ public class ConsoleRunner implements CommandLineRunner {
     @Autowired
     private SeedService seedService;
 
+
     @Override
     public void run(String... args) throws Exception {
         User user = userService.registerUser(new User("jhinov16","sasumAQS",LocalDate.now(),LocalDate.now()));
@@ -41,7 +42,6 @@ public class ConsoleRunner implements CommandLineRunner {
 
         Author author = authorService.getRandomAuthor();
         Book book =bookService.addBook(new Book("The Blue Berry", Genre.Science,LocalDate.parse("2018-07-06", DateTimeFormatter.ISO_LOCAL_DATE),author));
-
 
 
     }

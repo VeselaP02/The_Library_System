@@ -1,5 +1,6 @@
 package book_library.entities;
 
+import book_library.enums.Genre;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

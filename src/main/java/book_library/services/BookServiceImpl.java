@@ -6,6 +6,8 @@ import book_library.services.interfaces.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookServiceImpl implements BookService {
 
@@ -16,5 +18,9 @@ public class BookServiceImpl implements BookService {
 
         return bookRepository.save(book);
 
+    }
+
+    public List<Book> findBooksByAuthor(String firstName, String lastName) {
+        return bookRepository.findBooksByAuthorName(firstName, lastName);
     }
 }
