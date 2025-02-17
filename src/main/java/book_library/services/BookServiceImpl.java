@@ -21,6 +21,6 @@ public class BookServiceImpl implements BookService {
     }
 
     public List<Book> findBooksByAuthor(String firstName, String lastName) {
-        return bookRepository.findBooksByAuthorName(firstName, lastName);
+        return bookRepository.findByAuthor_FirstNameAndAuthor_LastName(firstName, lastName);
     }
 }

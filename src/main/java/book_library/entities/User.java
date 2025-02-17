@@ -19,22 +19,34 @@ public class User extends BaseEntitiesWithLongId {
     @Column(name = "registration_data")
     private LocalDate registrationDate;
 
+    private String address;
+
+    @Column(name = "phone_number",nullable = false)
+    private String phoneNumber;
+
     @Column(name = "last_logged_in")
     private LocalDate lastTimeLoggedIn;
 
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<BorrowRecords> borrowRecords;
 
+    @ManyToOne
+    private Town town;
+
     public User() {
         this.borrowRecords = new HashSet<>();
     }
 
-    public User(String username, String password, LocalDate registrationDate, LocalDate lastTimeLoggedIn) {
+    public User(String username, String password, LocalDate registrationDate, String address, String phoneNumber, LocalDate lastTimeLoggedIn
+    ,Town town) {
         this();
         this.username = username;
         this.password = password;
         this.registrationDate = registrationDate;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
         this.lastTimeLoggedIn = lastTimeLoggedIn;
+        this.town = town;
     }
 
     public String getUsername() {
@@ -75,5 +87,29 @@ public class User extends BaseEntitiesWithLongId {
 
     public void setLastTimeLoggedIn(LocalDate lastTimeLoggedIn) {
         this.lastTimeLoggedIn = lastTimeLoggedIn;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Town getTown() {
+        return town;
+    }
+
+    public void setTown(Town town) {
+        this.town = town;
     }
 }
