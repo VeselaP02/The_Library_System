@@ -7,7 +7,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 public class User extends BaseEntitiesWithLongId {
 
     @Column(unique = true,nullable = false)
@@ -30,15 +31,11 @@ public class User extends BaseEntitiesWithLongId {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<BorrowRecords> borrowRecords;
 
-    @ManyToOne
-    private Town town;
-
     public User() {
         this.borrowRecords = new HashSet<>();
     }
 
-    public User(String username, String password, LocalDate registrationDate, String address, String phoneNumber, LocalDate lastTimeLoggedIn
-    ,Town town) {
+    public User(String username, String password, LocalDate registrationDate, String address, String phoneNumber, LocalDate lastTimeLoggedIn) {
         this();
         this.username = username;
         this.password = password;
@@ -46,7 +43,6 @@ public class User extends BaseEntitiesWithLongId {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.lastTimeLoggedIn = lastTimeLoggedIn;
-        this.town = town;
     }
 
     public String getUsername() {
@@ -105,11 +101,4 @@ public class User extends BaseEntitiesWithLongId {
         this.phoneNumber = phoneNumber;
     }
 
-    public Town getTown() {
-        return town;
-    }
-
-    public void setTown(Town town) {
-        this.town = town;
-    }
 }

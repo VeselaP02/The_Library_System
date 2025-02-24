@@ -3,11 +3,13 @@ package book_library.entities;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "library_branches")
+@Entity
+@Table(name = "library_branches")
 public class LibraryBranch extends BaseEntitiesWithLongId{
 
         @Column(nullable = false, unique = true)

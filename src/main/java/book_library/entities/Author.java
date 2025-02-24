@@ -5,7 +5,8 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "authors")
+@Entity
+@Table(name = "authors")
 public class Author extends BaseEntitiesWithLongId{
 
     @Column(name = "first_name", nullable = false)

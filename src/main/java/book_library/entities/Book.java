@@ -8,7 +8,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "books")
+@Entity
+@Table(name = "books")
 public class Book extends BaseEntitiesWithLongId {
 
     @Column(nullable = false)
