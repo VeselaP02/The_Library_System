@@ -20,6 +20,10 @@ public class BorrowRecords {
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
+    @ManyToOne(optional = false)
+    @Column(name = "library_branch")
+    private LibraryBranch libraryBranch;
+
     private LocalDate borrowDate;
 
     private LocalDate returnDate;

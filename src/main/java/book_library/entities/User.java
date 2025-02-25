@@ -31,6 +31,10 @@ public class User extends BaseEntitiesWithLongId {
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<BorrowRecords> borrowRecords;
 
+    @ManyToOne(optional = false)
+    @Column(name = "library_branch")
+    private LibraryBranch libraryBranch;
+
     public User() {
         this.borrowRecords = new HashSet<>();
     }
@@ -101,4 +105,11 @@ public class User extends BaseEntitiesWithLongId {
         this.phoneNumber = phoneNumber;
     }
 
+    public LibraryBranch getLibraryBranch() {
+        return libraryBranch;
+    }
+
+    public void setLibraryBranch(LibraryBranch libraryBranch) {
+        this.libraryBranch = libraryBranch;
+    }
 }

@@ -32,6 +32,7 @@ public class Book extends BaseEntitiesWithLongId {
     private Set<BorrowRecords> borrowRecords;
 
     @ManyToOne(optional = false)
+    @Column(name = "library_branch")
     private LibraryBranch libraryBranch;
 
     public Book() {
