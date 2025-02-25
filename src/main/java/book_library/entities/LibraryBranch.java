@@ -1,12 +1,11 @@
 package book_library.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "library_branches")
@@ -16,10 +15,10 @@ public class LibraryBranch extends BaseEntitiesWithLongId{
         private String name;
 
         @Column(nullable = false)
-        private String address;
+        private String location;
 
-        @OneToMany(mappedBy = "libraryBranch")
-        private List<Book> books = new ArrayList<>();
+        @OneToMany(mappedBy = "libraryBranch",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+        private Set<Book> books = new HashSet<>();
 
         @OneToMany(mappedBy = "libraryBranch")
         private List<BorrowRecords> borrowRecords = new ArrayList<>();
@@ -30,20 +29,28 @@ public class LibraryBranch extends BaseEntitiesWithLongId{
         // Конструктори
         public LibraryBranch() {}
 
-        public LibraryBranch(String name, String address) {
+        public LibraryBranch(String name, String location) {
             this.name = name;
-            this.address = address;
+            this.location = location;
+            this.books = new HashSet<>();
+            this.borrowRecords = new ArrayList<>();
+            this.users = new ArrayList<>();
         }
 
 
         public String getName() { return name; }
         public void setName(String name) { this.name = name; }
 
-        public String getAddress() { return address; }
-        public void setAddress(String address) { this.address = address; }
+        public String getLocation() {
+                return location;
+        }
 
-        public List<Book> getBooks() { return books; }
-        public void setBooks(List<Book> books) { this.books = books; }
+        public void setLocation(String location) {
+                this.location = location;
+        }
+
+        public Set<Book> getBooks() { return books; }
+        public void setBooks(Set<Book> books) { this.books = books; }
 
         public List<BorrowRecords> getBorrowRecords() { return borrowRecords; }
         public void setBorrowRecords(List<BorrowRecords> borrowRecords) { this.borrowRecords = borrowRecords; }

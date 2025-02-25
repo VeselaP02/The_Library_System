@@ -31,6 +31,9 @@ public class Book extends BaseEntitiesWithLongId {
     @OneToMany(mappedBy = "book")
     private Set<BorrowRecords> borrowRecords;
 
+    @ManyToOne(optional = false)
+    private LibraryBranch libraryBranch;
+
     public Book() {
         this.borrowRecords = new HashSet<>();
     }
@@ -91,5 +94,13 @@ public class Book extends BaseEntitiesWithLongId {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public LibraryBranch getLibraryBranch() {
+        return libraryBranch;
+    }
+
+    public void setLibraryBranch(LibraryBranch libraryBranch) {
+        this.libraryBranch = libraryBranch;
     }
 }
