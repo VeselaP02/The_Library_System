@@ -21,12 +21,14 @@ public class LibraryBranch extends BaseEntitiesWithLongId{
         private Set<Book> books = new HashSet<>();
 
         @OneToMany(mappedBy = "libraryBranch")
-        private Set<BorrowRecords> borrowRecords = new HashSet<>();
+        private Set<BorrowRecords> borrowRecords;
 
-        @OneToMany(mappedBy = "homeBranch")
-        private List<User> users = new ArrayList<>();
+        @OneToMany(mappedBy = "libraryBranch")
+        private Set<User> users;
 
-        // Конструктори
+        @OneToMany(mappedBy = "libraryBranch")
+        private Set<Librarian> librarians;
+
         public LibraryBranch() {}
 
         public LibraryBranch(String name, String location) {
@@ -34,7 +36,8 @@ public class LibraryBranch extends BaseEntitiesWithLongId{
             this.location = location;
             this.books = new HashSet<>();
             this.borrowRecords = new HashSet<>();
-            this.users = new ArrayList<>();
+            this.users = new HashSet<>();
+            this.librarians = new HashSet<>();
         }
 
 
@@ -55,6 +58,14 @@ public class LibraryBranch extends BaseEntitiesWithLongId{
         public Set<BorrowRecords> getBorrowRecords() { return borrowRecords; }
         public void setBorrowRecords(Set<BorrowRecords> borrowRecords) { this.borrowRecords = borrowRecords; }
 
-        public List<User> getUsers() { return users; }
-        public void setUsers(List<User> users) { this.users = users; }
-    }
+        public Set<User> getUsers() { return users; }
+        public void setUsers(Set<User> users) { this.users = users; }
+
+        public Set<Librarian> getLibrarians() {
+                return librarians;
+        }
+
+        public void setLibrarians(Set<Librarian> librarians) {
+                this.librarians = librarians;
+        }
+}

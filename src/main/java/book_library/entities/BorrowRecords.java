@@ -21,8 +21,10 @@ public class BorrowRecords {
     private User user;
 
     @ManyToOne(optional = false)
-    @Column(name = "library_branch")
     private LibraryBranch libraryBranch;
+
+    @ManyToOne(optional = false)
+    private Librarian librarian;
 
     private LocalDate borrowDate;
 
@@ -74,5 +76,21 @@ public class BorrowRecords {
 
     public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public Librarian getLibrarian() {
+        return librarian;
+    }
+
+    public void setLibrarian(Librarian librarian) {
+        this.librarian = librarian;
+    }
+
+    public LibraryBranch getLibraryBranch() {
+        return libraryBranch;
+    }
+
+    public void setLibraryBranch(LibraryBranch libraryBranch) {
+        this.libraryBranch = libraryBranch;
     }
 }
