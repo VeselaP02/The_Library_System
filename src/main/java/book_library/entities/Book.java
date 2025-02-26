@@ -28,7 +28,7 @@ public class Book extends BaseEntitiesWithLongId {
     @ManyToOne(optional = false)
     private Author author;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<BorrowRecords> borrowRecords;
 
     @ManyToOne(optional = false)

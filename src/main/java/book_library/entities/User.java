@@ -28,7 +28,7 @@ public class User extends BaseEntitiesWithLongId {
     @Column(name = "last_logged_in")
     private LocalDate lastTimeLoggedIn;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<BorrowRecords> borrowRecords;
 
     @ManyToOne(optional = false)

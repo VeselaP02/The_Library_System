@@ -15,7 +15,7 @@ public class Author extends BaseEntitiesWithLongId{
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Book> books;
 
     public Author() {

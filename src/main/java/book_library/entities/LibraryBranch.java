@@ -21,7 +21,7 @@ public class LibraryBranch extends BaseEntitiesWithLongId{
         private Set<Book> books = new HashSet<>();
 
         @OneToMany(mappedBy = "libraryBranch")
-        private List<BorrowRecords> borrowRecords = new ArrayList<>();
+        private Set<BorrowRecords> borrowRecords = new HashSet<>();
 
         @OneToMany(mappedBy = "homeBranch")
         private List<User> users = new ArrayList<>();
@@ -33,7 +33,7 @@ public class LibraryBranch extends BaseEntitiesWithLongId{
             this.name = name;
             this.location = location;
             this.books = new HashSet<>();
-            this.borrowRecords = new ArrayList<>();
+            this.borrowRecords = new HashSet<>();
             this.users = new ArrayList<>();
         }
 
@@ -52,8 +52,8 @@ public class LibraryBranch extends BaseEntitiesWithLongId{
         public Set<Book> getBooks() { return books; }
         public void setBooks(Set<Book> books) { this.books = books; }
 
-        public List<BorrowRecords> getBorrowRecords() { return borrowRecords; }
-        public void setBorrowRecords(List<BorrowRecords> borrowRecords) { this.borrowRecords = borrowRecords; }
+        public Set<BorrowRecords> getBorrowRecords() { return borrowRecords; }
+        public void setBorrowRecords(Set<BorrowRecords> borrowRecords) { this.borrowRecords = borrowRecords; }
 
         public List<User> getUsers() { return users; }
         public void setUsers(List<User> users) { this.users = users; }
