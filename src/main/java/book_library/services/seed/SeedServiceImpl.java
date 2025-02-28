@@ -3,11 +3,13 @@ package book_library.services.seed;
 import book_library.entities.Author;
 import book_library.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+@Service
 public class SeedServiceImpl implements SeedService{
 
     private static final String RESOURCE_PATH = "C:\\Users\\xxxxx\\Downloads\\book_library\\book_library\\src\\main\\resources\\files\\authors.txt";
