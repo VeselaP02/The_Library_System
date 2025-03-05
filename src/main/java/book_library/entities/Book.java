@@ -29,7 +29,7 @@ public class Book extends BaseEntitiesWithLongId {
     private Author author;
 
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<BorrowRecords> borrowRecords;
+    private Set<BorrowRecord> borrowRecords;
 
     @ManyToOne(optional = false)
     private LibraryBranch libraryBranch;
@@ -80,11 +80,11 @@ public class Book extends BaseEntitiesWithLongId {
         isAvailable = available;
     }
 
-    public Set<BorrowRecords> getBorrowRecords() {
+    public Set<BorrowRecord> getBorrowRecords() {
         return Collections.unmodifiableSet(borrowRecords);
     }
 
-    public void setBorrowRecords(Set<BorrowRecords> borrowRecords) {
+    public void setBorrowRecords(Set<BorrowRecord> borrowRecords) {
         this.borrowRecords = borrowRecords;
     }
 

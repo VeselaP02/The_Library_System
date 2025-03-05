@@ -1,7 +1,6 @@
 package book_library.entities;
 
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,15 +17,16 @@ public class Librarian extends BaseEntitiesWithLongId{
         private LibraryBranch libraryBranch;
 
         @OneToMany(mappedBy = "librarian")
-        private Set<BorrowRecords> borrowRecords;
+        private Set<BorrowRecord> borrowRecords;
 
         public Librarian() {
         }
 
-        public Librarian(String firstName, String lastName, String email) {
+        public Librarian(String firstName, String lastName, String email,LibraryBranch libraryBranch) {
                 this.firstName = firstName;
                 this.lastName = lastName;
                 this.email = email;
+                this.libraryBranch = libraryBranch;
                 this.borrowRecords = new HashSet<>();
         }
 
@@ -62,11 +62,11 @@ public class Librarian extends BaseEntitiesWithLongId{
                 this.libraryBranch = libraryBranch;
         }
 
-        public Set<BorrowRecords> getBorrowRecords() {
+        public Set<BorrowRecord> getBorrowRecords() {
                 return borrowRecords;
         }
 
-        public void setBorrowRecords(Set<BorrowRecords> borrowRecords) {
+        public void setBorrowRecords(Set<BorrowRecord> borrowRecords) {
                 this.borrowRecords = borrowRecords;
         }
     }

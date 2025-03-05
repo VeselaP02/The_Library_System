@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "borrow_records")
-public class BorrowRecords {
+public class BorrowRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +30,10 @@ public class BorrowRecords {
 
     private LocalDate returnDate;
 
-    public BorrowRecords() {
+    public BorrowRecord() {
     }
 
-    public BorrowRecords(Book book, User user) {
+    public BorrowRecord(Book book, User user) {
         this.book = book;
         this.user = user;
     }

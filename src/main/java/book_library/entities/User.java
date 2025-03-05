@@ -29,7 +29,7 @@ public class User extends BaseEntitiesWithLongId {
     private LocalDate lastTimeLoggedIn;
 
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private Set<BorrowRecords> borrowRecords;
+    private Set<BorrowRecord> borrowRecords;
 
     @ManyToOne(optional = false)
     private LibraryBranch libraryBranch;
@@ -64,11 +64,11 @@ public class User extends BaseEntitiesWithLongId {
         this.password = password;
     }
 
-    public Set<BorrowRecords> getBorrowRecords() {
+    public Set<BorrowRecord> getBorrowRecords() {
         return Collections.unmodifiableSet(borrowRecords);
     }
 
-    public void setBorrowRecords(Set<BorrowRecords> borrowRecords) {
+    public void setBorrowRecords(Set<BorrowRecord> borrowRecords) {
         this.borrowRecords = borrowRecords;
     }
 
