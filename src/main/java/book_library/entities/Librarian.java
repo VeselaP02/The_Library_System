@@ -10,13 +10,16 @@ import java.util.Set;
 public class Librarian extends BaseEntitiesWithLongId{
 
         private String firstName;
+
         private String lastName;
+
+        @Column(unique = true,nullable = false)
         private String email;
 
         @ManyToOne(optional = false)
         private LibraryBranch libraryBranch;
 
-        @OneToMany(mappedBy = "librarian")
+        @OneToMany(mappedBy = "librarian",fetch = FetchType.LAZY)
         private Set<BorrowRecord> borrowRecords;
 
         public Librarian() {

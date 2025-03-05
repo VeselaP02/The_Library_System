@@ -15,7 +15,6 @@ public interface LibrarianRepository extends JpaRepository<Librarian,Long> {
 
     Set<Librarian> findByLibraryBranch(LibraryBranch libraryBranch);
 
-   //TODO: To change the query request to include the librarian's full name
-    @Query("SELECT l FROM Librarian l WHERE l.lastName LIKE %:name%")
-    Set<Librarian> findByNameContaining(@Param("name") String name);
+    @Query("SELECT l FROM Librarian l WHERE l.firstName LIKE %:firstName% and l.lastName LIKE %:lastName%")
+    Set<Librarian> findByFirstNameAndLastNameContaining(@Param("firstName") String firstName,@Param("lastName")String lastName);
     }
