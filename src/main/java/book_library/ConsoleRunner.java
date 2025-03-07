@@ -32,13 +32,6 @@ public class ConsoleRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User user = userService.registerUser(new User("mariq_471","sasumAQS",LocalDate.now(),"Karlova 89","088742933314",LocalDate.now()));
-
-//        seedService.seedAuthors();
-//
-//        Author author = authorService.getRandomAuthor();
-//        Book book =bookService.addBook(new Book("The Blue Berry", Genre.Science,LocalDate.parse("2018-07-06", DateTimeFormatter.ISO_LOCAL_DATE),author));
-
 
     }
 }

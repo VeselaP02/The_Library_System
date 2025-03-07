@@ -1,5 +1,6 @@
 package book_library.entities;
 
+import book_library.enums.BookStatus;
 import book_library.enums.Genre;
 import jakarta.persistence.*;
 
@@ -19,8 +20,9 @@ public class Book extends BaseEntitiesWithLongId {
     @Column(nullable = false)
     private Genre genre;
 
-    @Column(name = "is_available")
-    private Boolean isAvailable;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private BookStatus bookStatus;
 
     @Column (name = "release_date", nullable = false)
     private LocalDate releaseDate;
@@ -35,15 +37,14 @@ public class Book extends BaseEntitiesWithLongId {
     private LibraryBranch libraryBranch;
 
     public Book() {
+        this.bookStatus = BookStatus.AVAILABLE;
         this.borrowRecords = new HashSet<>();
     }
 
     public Book(String title, Genre genre, LocalDate releaseDate, Author author) {
         this();
-
         this.title = title;
         this.genre = genre;
-        this.isAvailable = true;
         this.releaseDate = releaseDate;
         this.author = author;
     }
@@ -72,12 +73,12 @@ public class Book extends BaseEntitiesWithLongId {
         this.releaseDate = releaseDate;
     }
 
-    public Boolean getAvailable() {
-        return isAvailable;
+    public BookStatus getBookStatus() {
+        return bookStatus;
     }
 
-    public void setAvailable(Boolean available) {
-        isAvailable = available;
+    public void setBookStatus(BookStatus bookStatus) {
+        this.bookStatus = bookStatus;
     }
 
     public Set<BorrowRecord> getBorrowRecords() {
