@@ -33,7 +33,7 @@ public class LibrarianServiceImpl implements LibrarianService {
     }
 
     @Override
-    public Set<Librarian> getLibrariansByBranch(Long branchId) {
+    public List<Librarian> getLibrariansByBranch(Long branchId) {
         LibraryBranch branch = libraryBranchRepository.findById(branchId)
                 .orElseThrow(() -> new EntityNotFoundException("Library branch not found"));
 

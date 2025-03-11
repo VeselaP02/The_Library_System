@@ -8,13 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface LibrarianRepository extends JpaRepository<Librarian,Long> {
 
-    Set<Librarian> findByLibraryBranch(LibraryBranch libraryBranch);
+    List<Librarian> findByLibraryBranch(LibraryBranch libraryBranch);
 
     @Query("SELECT l FROM Librarian l WHERE l.firstName LIKE %:firstName% and l.lastName LIKE %:lastName%")
-    Set<Librarian> findByFirstNameAndLastNameContaining(@Param("firstName") String firstName,@Param("lastName")String lastName);
+    List<Librarian> findAllByFirstNameAndLastNameContaining(@Param("firstName") String firstName,@Param("lastName")String lastName);
     }
