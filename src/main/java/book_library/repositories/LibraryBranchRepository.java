@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -13,7 +14,11 @@ public interface LibraryBranchRepository extends JpaRepository<LibraryBranch,Lon
 
     LibraryBranch findByName(String name);
 
-    @Query("SELECT lb FROM LibraryBranch lb " +
-            " WHERE lb.location = :location")
-    Set<LibraryBranch> findByLocation(@Param("location") String location);
+    List<LibraryBranch> findByLocation(String location);
+
+    @Query("SELECT DISTINCT lb FROM LibraryBranch lb JOIN lb.books b WHERE b.isAvailable = true")
+    List<LibraryBranch> findBranchesWithAvailableBooks();
+
+    @Query("SELECT lb FORM LibraryBranch lb JOIN lb.librarians l WHERE l.id = :librarianId")
+    LibraryBranch findBranchWithLibrarianId(@Param("librarianId") int librarianId);
 }
