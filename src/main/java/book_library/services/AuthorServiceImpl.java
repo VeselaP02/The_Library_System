@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -22,6 +23,11 @@ public class AuthorServiceImpl implements AuthorService {
 
            return authorRepository.save(author);
 
+    }
+
+    @Override
+    public List<Author> getAllAuthors() {
+        return authorRepository.findAll();
     }
 
     @Override
