@@ -21,4 +21,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByLibraryBranch_Name(String branchName);
 
     List<Book> findByBookStatus(BookStatus bookStatus);
+
+
 }

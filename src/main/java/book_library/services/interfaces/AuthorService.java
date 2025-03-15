@@ -13,6 +13,8 @@ public interface AuthorService {
 
     Author getRandomAuthor();
 
+    Author deleteAuthor(Author author);
+
 
 
 }

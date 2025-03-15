@@ -38,4 +38,9 @@ public class AuthorServiceImpl implements AuthorService {
 
         return this.authorRepository.findById(authorId).get();
     }
+
+    @Override
+    public Author deleteAuthor(Author author) {
+        return authorRepository.deleteByAuthor(author);
+    }
 }
