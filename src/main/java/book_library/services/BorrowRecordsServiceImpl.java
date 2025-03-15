@@ -3,6 +3,7 @@ package book_library.services;
 import book_library.entities.Book;
 import book_library.entities.BorrowRecord;
 import book_library.entities.User;
+import book_library.enums.BookStatus;
 import book_library.repositories.BookRepository;
 import book_library.repositories.BorrowRecordRepository;
 import book_library.repositories.UserRepository;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Service
 public class BorrowRecordsServiceImpl implements BorrowRecordsService {
 
@@ -25,7 +28,7 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService {
 
     @Override
     public void borrowBook(User user, Book book) {
-        if (book.getAvailable()){
+        if (book.getBookStatus() == BookStatus.AVAILABLE){
             BorrowRecord borrowRecords = new BorrowRecord();
 
             borrowRecords.setUser(user);
@@ -34,7 +37,7 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService {
 
             borrowRecords.setBorrowDate(LocalDate.now());
 
-            book.setAvailable(false);
+            book.setBookStatus(BookStatus.BORROWED);
 
             borrowRecordRepository.save(borrowRecords);
 
@@ -54,7 +57,7 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService {
         if (foundBorrow != null){
             foundBorrow.setReturnDate(LocalDate.now());
 
-            book.setAvailable(false);
+            book.setBookStatus(BookStatus.AVAILABLE);
 
             borrowRecordRepository.save(foundBorrow);
 
@@ -63,5 +66,27 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService {
             throw new RuntimeException("No active borrow record found");
         }
 
+    }
+
+    @Override
+    public List<BorrowRecord> findBorrowedBooksByUser(User user) {
+        return borrowRecordRepository.findAllByUser(user);
+    }
+
+    @Override
+    public List<BorrowRecord> findOverdueBooks() {
+        return borrowRecordRepository.findAll()
+                .stream()
+                .filter(borrowRecord -> borrowRecord.getReturnDate() == null &&
+                        borrowRecord.getBorrowDate().isBefore(LocalDate.now().minusWeeks(4)))
+                .toList();
+    }
+
+    @Override
+    public boolean isBookBorrowed(Book book) {
+        return borrowRecordRepository.findAll()
+                .stream()
+                .anyMatch(borrowRecord -> borrowRecord.getBook().equals(book) &&
+                        borrowRecord.getBook().getBookStatus() == BookStatus.BORROWED);
     }
 }
