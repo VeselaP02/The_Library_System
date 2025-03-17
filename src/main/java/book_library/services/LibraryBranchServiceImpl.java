@@ -4,10 +4,12 @@ import book_library.entities.LibraryBranch;
 import book_library.repositories.LibraryBranchRepository;
 import book_library.services.interfaces.LibraryBranchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class LibraryBranchServiceImpl implements LibraryBranchService {
 
     private final LibraryBranchRepository libraryBranchRepository;
@@ -31,5 +33,19 @@ public class LibraryBranchServiceImpl implements LibraryBranchService {
     @Override
     public LibraryBranch getBranchByName(String name) {
         return libraryBranchRepository.findByName(name);
+    }
+
+    @Override
+    public List<LibraryBranch> getBranchesByLocation(String location) {
+        return libraryBranchRepository.findByLocation(location);
+    }
+
+    @Override
+    public void deleteLibraryBranch(Long id) {
+        if (!libraryBranchRepository.existsById(id)) {
+            throw new RuntimeException("Library Branch not found!");
+        }
+
+        this.libraryBranchRepository.deleteById(id);
     }
 }

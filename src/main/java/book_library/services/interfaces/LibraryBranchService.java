@@ -11,4 +11,8 @@ public interface LibraryBranchService {
     List<LibraryBranch> getAllBranches();
 
     LibraryBranch getBranchByName(String name);
+
+    List<LibraryBranch> getBranchesByLocation(String location);
+
+    void deleteLibraryBranch(Long id);
 }

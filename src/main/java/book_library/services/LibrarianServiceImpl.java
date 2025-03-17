@@ -7,10 +7,12 @@ import book_library.repositories.LibraryBranchRepository;
 import book_library.services.interfaces.LibrarianService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class LibrarianServiceImpl implements LibrarianService {
 
     private final LibrarianRepository librarianRepository;
@@ -24,7 +26,7 @@ public class LibrarianServiceImpl implements LibrarianService {
 
 
     @Override
-    public LibrarianService addLibrarian(String firstName, String lastName, String email, LibraryBranch branch, Long branchId) {
+    public Librarian addLibrarian(String firstName, String lastName, String email, LibraryBranch branch, Long branchId) {
         LibraryBranch libraryBranch = libraryBranchRepository.findById(branchId).orElseThrow(() -> new RuntimeException("Library branch not found"));
 
         Librarian librarian = new Librarian(firstName,lastName,email,libraryBranch);
@@ -38,20 +40,6 @@ public class LibrarianServiceImpl implements LibrarianService {
                 .orElseThrow(() -> new EntityNotFoundException("Library branch not found"));
 
         return librarianRepository.findByLibraryBranch(branch);
-    }
-
-    @Override
-    public Librarian updateLibrarian(Long librarianId, String newFirstName, String newLastName, Long newBranchId) {
-        Librarian librarian = librarianRepository.findById(librarianId)
-                .orElseThrow(() -> new EntityNotFoundException("Librarian not found"));
-
-        LibraryBranch newBranch = libraryBranchRepository.findById(newBranchId)
-                .orElseThrow(() -> new EntityNotFoundException("Library branch not found"));
-
-        librarian.setFirstName(newFirstName);
-        librarian.setLastName(newLastName);
-        librarian.setLibraryBranch(newBranch);
-        return librarianRepository.save(librarian);
     }
 
     @Override
