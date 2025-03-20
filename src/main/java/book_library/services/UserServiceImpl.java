@@ -19,4 +19,27 @@ public class UserServiceImpl implements UserService {
            return userRepository.save(user);
 
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User updateUserContactInfo(Long userId, String newAddress, String newPhoneNumber) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setAddress(newAddress);
+        user.setPhoneNumber(newPhoneNumber);
+
+       return userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(Long userId) {
+        if (!userRepository.existsById(userId)) {
+            throw new RuntimeException("User not found");
+        }
+        userRepository.deleteById(userId);
+    }
 }
