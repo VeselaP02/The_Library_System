@@ -16,7 +16,7 @@ public interface AuthorRepository extends JpaRepository<Author,Long> {
 
     List<Author> findByLastNameIgnoreCase(String lastName);
 
-    List<Author> findByFirstNameAndLastNameIgnoreCase(String firstName,String lastName);
+    Author findByFirstNameAndLastNameIgnoreCase(String firstName,String lastName);
 
     @Query("SELECT DISTINCT a FROM Author a JOIN a.books b WHERE b.releaseDate > :date")
     List<Author> findByReleaseDateAfter(@Param("date") LocalDate date);

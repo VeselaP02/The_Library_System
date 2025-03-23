@@ -1,5 +1,6 @@
 package book_library.services.interfaces;
 
+import book_library.DTO.AuthorDTO;
 import book_library.entities.Author;
 
 import java.io.IOException;

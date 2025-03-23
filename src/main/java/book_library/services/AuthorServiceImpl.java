@@ -1,5 +1,6 @@
 package book_library.services;
 
+import book_library.DTO.AuthorDTO;
 import book_library.entities.Author;
 import book_library.repositories.AuthorRepository;
 import book_library.services.interfaces.AuthorService;
