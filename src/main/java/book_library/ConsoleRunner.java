@@ -62,6 +62,7 @@ public class ConsoleRunner implements CommandLineRunner {
 
             System.out.println(result);
 
+            commandName = scanner.nextLine();
         }
     }
 
@@ -83,6 +84,7 @@ public class ConsoleRunner implements CommandLineRunner {
 
         System.out.print(AUTHOR_LAST_NAME);
         String lastName = scanner.nextLine();
+
 
         return new String[]{firstName,lastName};
     }

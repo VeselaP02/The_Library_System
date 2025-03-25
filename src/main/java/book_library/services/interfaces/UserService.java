@@ -1,10 +1,11 @@
 package book_library.services.interfaces;
 
+import book_library.DTO.RegisterDTO;
 import book_library.entities.User;
 
 public interface UserService {
 
-    User registerUser(User user);
+    User registerUser(RegisterDTO registerData);
 
     User findByUsername(String username);
 

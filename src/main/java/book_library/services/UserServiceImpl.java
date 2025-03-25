@@ -1,8 +1,11 @@
 package book_library.services;
 
+import book_library.DTO.RegisterDTO;
 import book_library.entities.User;
+import book_library.exceptions.UserAlreadyExistsException;
 import book_library.repositories.UserRepository;
 import book_library.services.interfaces.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +17,17 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User registerUser(User user) {
+    public User registerUser(RegisterDTO registerData) {
 
-           return userRepository.save(user);
+        ModelMapper mapper = new ModelMapper();
+        User userToRegister = mapper.map(registerData, User.class);
+
+        User userByUsername = this.userRepository.findByUsername(userToRegister.getUsername());
+        if (userByUsername != null) {
+            throw new UserAlreadyExistsException("User already exists!");
+        }
+
+           return userRepository.save(userToRegister);
 
     }
 
@@ -42,4 +53,5 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.deleteById(userId);
     }
+
 }

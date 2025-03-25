@@ -12,7 +12,7 @@ public interface AuthorService {
 
     List<Author> getAllAuthors();
 
-    Author getRandomAuthor();
+    Author getAuthorByFullName(String firstName,String lastName);
 
     Author deleteAuthor(Author author);
 

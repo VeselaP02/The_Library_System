@@ -6,10 +6,6 @@ import book_library.repositories.AuthorRepository;
 import book_library.services.interfaces.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Random;
 
@@ -32,12 +28,9 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author getRandomAuthor() {
-        long size = this.authorRepository.count();
+    public Author findAuthorByFullName(String firstName,String lastName) {
 
-        long authorId = new Random().nextInt((int)size) +1;
-
-        return this.authorRepository.findById(authorId).get();
+        return this.authorRepository.findByFirstNameAndLastNameIgnoreCase(firstName,lastName);
     }
 
     @Override
