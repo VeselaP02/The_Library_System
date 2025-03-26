@@ -1,6 +1,6 @@
 package book_library;
 
-import book_library.DTO.authors.AddAuthorDTO;
+import book_library.DTO.authors.AuthorDTO;
 import book_library.entities.Author;
 import book_library.services.interfaces.AuthorService;
 import book_library.services.interfaces.BookService;
@@ -12,13 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Scanner;
 
 import static book_library.enums.ConsoleMessages.*;
 
 @Component
 public class ConsoleRunner implements CommandLineRunner {
+
+    Scanner scanner = new Scanner(System.in);
 
     private final UserService userService;
 
@@ -55,8 +56,8 @@ public class ConsoleRunner implements CommandLineRunner {
 
         while (!commandName.equals("END")) {
             String result = switch (commandName) {
-                case "ADD_AUTHOR" -> addAuthor(authorData());
-                case "GET_AUTHOR" -> getAuthorByFullName(authorData());
+                case "ADD_AUTHOR" -> addAuthor(addAuthorData());
+                case "GET_AUTHOR" -> getAuthorByFullName(getAuthorData());
                 default -> "No such command";
             };
 
@@ -66,15 +67,19 @@ public class ConsoleRunner implements CommandLineRunner {
         }
     }
 
-    private String getAuthorByFullName(String[] authorData) {
-        AddAuthorDTO authorData = new AddAuthorDTO(data);
 
-        Author addedAuthor = mapper.map(authorData,Author.class);
+
+    private String getAuthorByFullName(String[] authorData) {
+        AuthorDTO findAuthor = new AuthorDTO(authorData);
+
+        Author author = mapper.map(findAuthor,Author.class);
+
+        return String.format(FOUND_AUTHOR_SUCCESSFULLY,author.getFirstName(),author.getLastName());
     }
 
 
     private String addAuthor(String[] data) {
-        AddAuthorDTO authorData = new AddAuthorDTO(data);
+        AuthorDTO authorData = new AuthorDTO(data);
 
         Author addedAuthor = mapper.map(authorData,Author.class);
         authorService.addAuthor(addedAuthor);
@@ -82,10 +87,21 @@ public class ConsoleRunner implements CommandLineRunner {
         return String.format(ADDED_AUTHOR_SUCCESSFULLY,addedAuthor.getFirstName(),addedAuthor.getLastName());
     }
 
-    private String [] authorData(){
-        Scanner scanner = new Scanner(System.in);
+    private String [] addAuthorData(){
 
         System.out.println(ADD_NEW_AUTHOR);
+        System.out.print(AUTHOR_FIRST_NAME);
+        String firstName = scanner.nextLine();
+
+        System.out.print(AUTHOR_LAST_NAME);
+        String lastName = scanner.nextLine();
+
+
+        return new String[]{firstName,lastName};
+    }
+
+    private String[] getAuthorData() {
+
         System.out.print(AUTHOR_FIRST_NAME);
         String firstName = scanner.nextLine();
 

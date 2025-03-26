@@ -1,10 +1,8 @@
 package book_library.services;
 
-import book_library.DTO.authors.AddAuthorDTO;
 import book_library.entities.Author;
 import book_library.repositories.AuthorRepository;
 import book_library.services.interfaces.AuthorService;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
