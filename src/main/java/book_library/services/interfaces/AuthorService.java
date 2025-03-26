@@ -1,9 +1,8 @@
 package book_library.services.interfaces;
 
-import book_library.DTO.AuthorDTO;
+import book_library.DTO.authors.AddAuthorDTO;
 import book_library.entities.Author;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface AuthorService {

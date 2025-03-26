@@ -1,19 +1,21 @@
 package book_library.services;
 
-import book_library.DTO.AuthorDTO;
+import book_library.DTO.authors.AddAuthorDTO;
 import book_library.entities.Author;
 import book_library.repositories.AuthorRepository;
 import book_library.services.interfaces.AuthorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
+
+    public AuthorServiceImpl(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     @Override
     public Author addAuthor(Author author) {
@@ -24,11 +26,12 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public List<Author> getAllAuthors() {
+
         return authorRepository.findAll();
     }
 
     @Override
-    public Author findAuthorByFullName(String firstName,String lastName) {
+    public Author getAuthorByFullName(String firstName,String lastName) {
 
         return this.authorRepository.findByFirstNameAndLastNameIgnoreCase(firstName,lastName);
     }

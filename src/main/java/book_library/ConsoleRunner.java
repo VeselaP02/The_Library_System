@@ -1,8 +1,7 @@
 package book_library;
 
-import book_library.DTO.AuthorDTO;
+import book_library.DTO.authors.AddAuthorDTO;
 import book_library.entities.Author;
-import book_library.enums.ConsoleMessages;
 import book_library.services.interfaces.AuthorService;
 import book_library.services.interfaces.BookService;
 import book_library.services.interfaces.BorrowRecordsService;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Scanner;
 
 import static book_library.enums.ConsoleMessages.*;
@@ -52,11 +52,11 @@ public class ConsoleRunner implements CommandLineRunner {
         Scanner scanner = new Scanner(System.in);
 
         String commandName = scanner.nextLine();
-        String [] data = scanner.nextLine().split(System.lineSeparator());
 
         while (!commandName.equals("END")) {
             String result = switch (commandName) {
-                case "ADD_AUTHOR" -> addAuthor(authorInformation());
+                case "ADD_AUTHOR" -> addAuthor(authorData());
+                case "GET_AUTHOR" -> getAuthorByFullName(authorData());
                 default -> "No such command";
             };
 
@@ -66,8 +66,15 @@ public class ConsoleRunner implements CommandLineRunner {
         }
     }
 
+    private String getAuthorByFullName(String[] authorData) {
+        AddAuthorDTO authorData = new AddAuthorDTO(data);
+
+        Author addedAuthor = mapper.map(authorData,Author.class);
+    }
+
+
     private String addAuthor(String[] data) {
-        AuthorDTO authorData = new AuthorDTO(data);
+        AddAuthorDTO authorData = new AddAuthorDTO(data);
 
         Author addedAuthor = mapper.map(authorData,Author.class);
         authorService.addAuthor(addedAuthor);
@@ -75,7 +82,7 @@ public class ConsoleRunner implements CommandLineRunner {
         return String.format(ADDED_AUTHOR_SUCCESSFULLY,addedAuthor.getFirstName(),addedAuthor.getLastName());
     }
 
-    private String [] authorInformation(){
+    private String [] authorData(){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(ADD_NEW_AUTHOR);

@@ -1,12 +1,12 @@
-package book_library.DTO;
+package book_library.DTO.authors;
 
-public class AuthorDTO {
+public class AddAuthorDTO {
 
     private String firstName;
 
     private String lastName;
 
-    public AuthorDTO(String [] authorData) {
+    public AddAuthorDTO(String [] authorData) {
         this.firstName = authorData[0];
         this.lastName = authorData[1];
     }
