@@ -1,4 +1,4 @@
-package book_library.exceptions;
+package book_library.exceptions.registration;
 
 public class UserAlreadyExistsException extends RuntimeException {
     public UserAlreadyExistsException(String reason) {

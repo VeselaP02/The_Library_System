@@ -1,4 +1,4 @@
-package book_library.exceptions;
+package book_library.exceptions.registration;
 
 public class PasswordUpperCaseException extends RuntimeException {
     public PasswordUpperCaseException(String reason) {

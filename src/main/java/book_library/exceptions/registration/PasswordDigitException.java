@@ -1,4 +1,4 @@
-package book_library.exceptions;
+package book_library.exceptions.registration;
 
 public class PasswordDigitException extends RuntimeException {
     public PasswordDigitException(String reason) {

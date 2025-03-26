@@ -1,7 +1,6 @@
 package book_library.DTO;
 
-import book_library.exceptions.*;
-import book_library.exceptions.registration.IncorrectUsernameException;
+import book_library.exceptions.registration.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
