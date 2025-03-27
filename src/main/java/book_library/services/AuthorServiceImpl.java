@@ -6,6 +6,9 @@ import book_library.repositories.AuthorRepository;
 import book_library.services.interfaces.AuthorService;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import book_library.enums.ExceptionMessages.*;
+
+import static book_library.enums.ExceptionMessages.NOT_FOUND_AUTHOR_EXCEPTION;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -34,7 +37,7 @@ public class AuthorServiceImpl implements AuthorService {
 
         Author searchAuthor = this.authorRepository.findByFirstNameAndLastNameIgnoreCase(firstName, lastName);
         if (searchAuthor == null){
-            throw new NotFoundAuthorException(String.format("The author %s %s was not found",firstName,lastName));
+            throw new NotFoundAuthorException(String.format(NOT_FOUND_AUTHOR_EXCEPTION,firstName,lastName));
         }
         return searchAuthor;
 
@@ -43,6 +46,11 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author deleteAuthor(Author author) {
+        Author searchAuthor = authorRepository.findByFirstNameAndLastNameIgnoreCase(author.getFirstName(), author.getLastName());
+
+        if (searchAuthor == null){
+            throw new NotFoundAuthorException(String.format(NOT_FOUND_AUTHOR_EXCEPTION,author.getFirstName(),author.getLastName()));
+        }
         return authorRepository.deleteByAuthor(author);
     }
 }

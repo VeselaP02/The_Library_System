@@ -50,7 +50,6 @@ public class ConsoleRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Please insert your command:");
-        Scanner scanner = new Scanner(System.in);
 
         String commandName = scanner.nextLine();
 
@@ -58,6 +57,7 @@ public class ConsoleRunner implements CommandLineRunner {
             String result = switch (commandName) {
                 case "ADD_AUTHOR" -> addAuthor(addAuthorData());
                 case "GET_AUTHOR" -> getAuthorByFullName(getAuthorData());
+                case "DELETE_AUTHOR" -> deleteAuthor(getAuthorData());
                 default -> "No such command";
             };
 
@@ -67,13 +67,21 @@ public class ConsoleRunner implements CommandLineRunner {
         }
     }
 
+    private String deleteAuthor(String[] authorData) {
+        AuthorDTO findAuthor = new AuthorDTO(authorData);
+
+        Author author = mapper.map(findAuthor,Author.class);
+        authorService.deleteAuthor(author);
+
+        return String.format(DELETE_AUTHOR_SUCCESSFULLY,author.getFirstName(),author.getLastName());
+    }
 
 
     private String getAuthorByFullName(String[] authorData) {
         AuthorDTO findAuthor = new AuthorDTO(authorData);
 
         Author author = mapper.map(findAuthor,Author.class);
-
+        authorService.getAuthorByFullName(author.getFirstName(),author.getLastName());
         return String.format(FOUND_AUTHOR_SUCCESSFULLY,author.getFirstName(),author.getLastName());
     }
 
@@ -90,10 +98,10 @@ public class ConsoleRunner implements CommandLineRunner {
     private String [] addAuthorData(){
 
         System.out.println(ADD_NEW_AUTHOR);
-        System.out.print(AUTHOR_FIRST_NAME);
+        System.out.print(FIRST_NAME);
         String firstName = scanner.nextLine();
 
-        System.out.print(AUTHOR_LAST_NAME);
+        System.out.print(LAST_NAME);
         String lastName = scanner.nextLine();
 
 
@@ -102,10 +110,10 @@ public class ConsoleRunner implements CommandLineRunner {
 
     private String[] getAuthorData() {
 
-        System.out.print(AUTHOR_FIRST_NAME);
+        System.out.print(FIRST_NAME);
         String firstName = scanner.nextLine();
 
-        System.out.print(AUTHOR_LAST_NAME);
+        System.out.print(LAST_NAME);
         String lastName = scanner.nextLine();
 
 

@@ -4,6 +4,9 @@ import book_library.exceptions.registration.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import book_library.enums.ExceptionMessages.*;
+
+import static book_library.enums.ExceptionMessages.*;
 
 public class RegisterDTO {
 
@@ -26,25 +29,25 @@ public class RegisterDTO {
         Matcher usernameMatcher = pattern.matcher(this.username);
 
         if (!usernameMatcher.matches()){
-            throw new IncorrectUsernameException("Username is not correct!");
+            throw new IncorrectUsernameException(USERNAME_EXCEPTION);
         }
     }
 
     private void passwordValidation() {
         if (password.length() < 6) {
-            throw new PasswordLengthException("Password must be at least 6 symbols!");
+            throw new PasswordLengthException(PASSWORD_LENGTH_EXCEPTION);
         } else if (password.chars().noneMatch(Character::isUpperCase)) {
-            throw new PasswordUpperCaseException("Password must must contain at least 1 uppercase letter!");
+            throw new PasswordUpperCaseException(PASSWORD_UPPERCASE_EXCEPTION);
         } else if (password.chars().noneMatch(Character::isLowerCase)) {
-            throw new PasswordLowerCaseException("Password must must contain at least 1 lowercase letter!");
+            throw new PasswordLowerCaseException(PASSWORD_LOWERCASE_EXCEPTION);
         } else if (password.chars().noneMatch(Character::isDigit)) {
-            throw new PasswordDigitException("Password must must contain at least 1 digit!");
+            throw new PasswordDigitException(PASSWORD_DIGIT_EXCEPTION);
         }
     }
 
     private void confirmPasswordValidation() {
         if (!password.equals(confirmPassword)){
-            throw new ConfirmationPasswordException("Password and Confirmation Password wan not match");
+            throw new ConfirmationPasswordException(CONFIRMATION_PASSWORD_EXCEPTION);
         }
     }
 

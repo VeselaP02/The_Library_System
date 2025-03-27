@@ -2,12 +2,14 @@ package book_library.services;
 
 import book_library.DTO.RegisterDTO;
 import book_library.entities.User;
+import book_library.exceptions.registration.NotUserFoundException;
 import book_library.exceptions.registration.UserAlreadyExistsException;
 import book_library.repositories.UserRepository;
 import book_library.services.interfaces.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import static book_library.enums.ExceptionMessages.*;
 
 
 @Service
@@ -24,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
         User userByUsername = this.userRepository.findByUsername(userToRegister.getUsername());
         if (userByUsername != null) {
-            throw new UserAlreadyExistsException("User already exists!");
+            throw new UserAlreadyExistsException(USER_EXISTS_EXCEPTION);
         }
 
            return userRepository.save(userToRegister);
@@ -38,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUserContactInfo(Long userId, String newAddress, String newPhoneNumber) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new NotUserFoundException(NOT_USER_FOUND_EXCEPTION));
 
         user.setAddress(newAddress);
         user.setPhoneNumber(newPhoneNumber);
