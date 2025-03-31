@@ -58,14 +58,12 @@ public class ConsoleRunner implements CommandLineRunner {
         while (!commandName.equals("END")) {
             String result = switch (commandName) {
                 case "ADD_AUTHOR" -> addAuthor(addAuthorData());
-                case "GET_AUTHOR" -> getAuthorByFullName(getAuthorData());
+                case "GET_AUTHOR" -> getAuthor(getAuthorData());
                 case "DELETE_AUTHOR" -> deleteAuthor(getAuthorData());
                 case "ADD_BOOK" -> addBook(addBookData());
-                case "GET_BOOK" -> getBookByTitle(getBookData());
                 case "DELETE_BOOK" -> deleteBook(getBookData());
                 case "ADD_USER" -> registerUser(addUserData());
-                case "GET_USER" -> getUserByUsername(getUserData());
-                case "DELETE_USER" -> deleteUser(getUserData());
+                case "DELETE_USER" -> deleteUser(getUserDeleteData());
                 case "ADD_BORROW_RECORD" -> addBorrowRecord(addBorrowRecordData());
                 case "ADD_LIBRARY_BRANCH" -> addLibraryBranch(addLibraryBranchData());
                 case "ADD_LIBRARIAN" -> addLibrarian(addLibrarianData());
@@ -78,6 +76,36 @@ public class ConsoleRunner implements CommandLineRunner {
         }
     }
 
+    private String deleteUser(String [] userData){
+        DeleteUserDTO deleteUserDTO = new DeleteUserDTO(userData);
+
+        return String.format(DELETE_USER_SUCCESSFULLY,deleteUserDTO.getUsername());
+
+    }
+
+    private String [] getUserDeleteData(){
+        System.out.println(USERNAME);
+        String username = scanner.nextLine();
+
+        return new String []{username};
+    }
+    private String deleteBook(String [] bookData){
+        BookDTO bookDTO = new BookDTO(bookData);
+        Book book = mapper.map(bookDTO, Book.class);
+        bookService.deleteBook(book.getId());
+
+        return String.format(DELETE_BOOK_SUCCESSFULLY,book.getTitle());
+
+    }
+
+    private String [] getBookData(){
+        System.out.println(BOOK_TITLE);
+        String bookTitle = scanner.nextLine();
+
+        return new String []{bookTitle};
+    }
+
+
     private String deleteAuthor(String[] authorData) {
         AuthorDTO findAuthor = new AuthorDTO(authorData);
 
@@ -88,7 +116,7 @@ public class ConsoleRunner implements CommandLineRunner {
     }
 
 
-    private String getAuthorByFullName(String[] authorData) {
+    private String getAuthor(String[] authorData) {
         AuthorDTO findAuthor = new AuthorDTO(authorData);
 
         Author author = mapper.map(findAuthor,Author.class);
@@ -109,10 +137,10 @@ public class ConsoleRunner implements CommandLineRunner {
     private String [] addAuthorData(){
 
         System.out.println(ADD_NEW_AUTHOR);
-        System.out.print(FIRST_NAME);
+        System.out.println(FIRST_NAME);
         String firstName = scanner.nextLine();
 
-        System.out.print(LAST_NAME);
+        System.out.println(LAST_NAME);
         String lastName = scanner.nextLine();
 
 
@@ -167,21 +195,22 @@ public class ConsoleRunner implements CommandLineRunner {
     }
 
     private String addBorrowRecord(String[] data) {
-        borrowRecordsService.borrowBook(data);
+        BorrowRecordDTO borrowRecordDTO = new BorrowRecordDTO(data);
+        borrowRecordsService.borrowBook(borrowRecordDTO);
         return ADDED_BORROW_RECORD_SUCCESSFULLY;
     }
 
     private String[] addBorrowRecordData() {
         System.out.println(ADD_NEW_BORROW_RECORD);
 
-        System.out.println("Въведете ID на потребител: ");
-        String username = scanner.nextLine().trim();
+        System.out.println(USER_ID);
+        String userId = scanner.nextLine().trim();
 
-        System.out.println("Въведете ID на книга: ");
-        String bookTitle = scanner.nextLine().trim();
+        System.out.println(BOOK_ID);
+        String bookId = scanner.nextLine().trim();
 
 
-        return new String[]{username, bookTitle};
+        return new String[]{userId, bookId};
     }
 
     private String addLibraryBranch(String[] data) {

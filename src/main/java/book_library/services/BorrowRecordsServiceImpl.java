@@ -1,19 +1,26 @@
 package book_library.services;
 
+import book_library.DTO.BorrowRecordDTO;
 import book_library.entities.Book;
 import book_library.entities.BorrowRecord;
 import book_library.entities.User;
 import book_library.enums.BookStatus;
+import book_library.exceptions.books.NoBookAvailableException;
+import book_library.exceptions.borrowRecords.NoActiveBorrowRecordException;
 import book_library.repositories.BookRepository;
 import book_library.repositories.BorrowRecordRepository;
 import book_library.repositories.UserRepository;
 import book_library.services.interfaces.BorrowRecordsService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import static book_library.enums.ConsoleMessages.BOOK_EXCEPTION;
+import static book_library.enums.ConsoleMessages.BORROW_RECORD_EXCEPTION;
 
 @Service
 public class BorrowRecordsServiceImpl implements BorrowRecordsService {
@@ -28,13 +35,12 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService {
     private BorrowRecordRepository borrowRecordRepository;
 
     @Override
-    public void borrowBook(String [] borrowData) {
-        String username = borrowData[1];
-        String bookTile =borrowData[2];
+    public void borrowBook(BorrowRecordDTO borrowRecordData) {
+        ModelMapper mapper = new ModelMapper();
+        BorrowRecord borrowRecord = mapper.map(borrowRecordData, BorrowRecord.class);
 
-        User user = userRepository.findByUsername(username);
-        Book book = bookRepository.findByTitle(bookTile);
-
+        User user = borrowRecord.getUser();
+        Book book = borrowRecord.getBook();
 
 
         if (book.getBookStatus() == BookStatus.AVAILABLE){
@@ -53,7 +59,7 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService {
             bookRepository.save(book);
 
         } else {
-            throw new RuntimeException("Book is not available");
+            throw new NoBookAvailableException(BOOK_EXCEPTION);
         }
 
     }
@@ -72,7 +78,7 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService {
 
             bookRepository.save(book);
         } else {
-            throw new RuntimeException("No active borrow record found");
+            throw new NoActiveBorrowRecordException(BORROW_RECORD_EXCEPTION);
         }
 
     }
@@ -92,7 +98,7 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService {
     }
 
     @Override
-    public boolean isBookBorrowed(Book book) {
+    public boolean isBookBorrowed(Optional<Book> book) {
         return borrowRecordRepository.findAll()
                 .stream()
                 .anyMatch(borrowRecord -> borrowRecord.getBook().equals(book) &&

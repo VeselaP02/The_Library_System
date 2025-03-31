@@ -22,5 +22,13 @@ public enum ConsoleMessages {
     public static final String ADDED_LIBRARY_BRANCH_SUCCESSFULLY = "The branch %s was added successfully!";
     public static final String ADD_NEW_LIBRARIAN = "Add new librarian - Please fill the following fields";
     public static final String ADDED_LIBRARIAN_SUCCESSFULLY = "The librarian %s %s was added successfully!";
+    public static final String ADD_NEW_BORROW_RECORD = "Add new borrow record - Please fill the following fields";
+    public static final String USER_ID = "UseID: ";
+    public static final String BOOK_ID = "BookID: ";
+    public static final String ADDED_BORROW_RECORD_SUCCESSFULLY = "The borrowRecord was added successfully!";
+    public static final String BORROW_RECORD_EXCEPTION = "No active borrow record found!";
+    public static final String BOOK_EXCEPTION = "Book is not available!";
+    public static final String DELETE_BOOK_SUCCESSFULLY = "The book %s was deleted!";
+    public static final String DELETE_USER_SUCCESSFULLY = "The user %s was deleted!";
 
 }

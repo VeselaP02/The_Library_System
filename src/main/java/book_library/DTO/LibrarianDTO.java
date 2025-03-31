@@ -1,7 +1,6 @@
 package book_library.DTO;
 
-import book_library.enums.ExceptionMessages;
-import book_library.exceptions.IncorrectEmailException;
+import book_library.exceptions.registration.IncorrectEmailException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
