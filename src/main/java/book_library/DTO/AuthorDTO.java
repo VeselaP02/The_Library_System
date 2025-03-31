@@ -1,4 +1,4 @@
-package book_library.DTO.authors;
+package book_library.DTO;
 
 public class AuthorDTO {
 

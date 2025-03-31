@@ -21,4 +21,5 @@ public enum ExceptionMessages {
 
     public static final String NOT_USER_FOUND_EXCEPTION = "User not found!";
 
+    public static final String EMAIL_EXCEPTION = "Email is not valid!";
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface BorrowRecordsService {
 
-    void borrowBook(User user, Book book);
+    void borrowBook(String [] borrowData);
 
     void returnBook(User user, Book book, LocalDate borrowDate);
 

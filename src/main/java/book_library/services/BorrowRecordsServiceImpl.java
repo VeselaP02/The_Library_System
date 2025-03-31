@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BorrowRecordsServiceImpl implements BorrowRecordsService {
@@ -27,7 +28,15 @@ public class BorrowRecordsServiceImpl implements BorrowRecordsService {
     private BorrowRecordRepository borrowRecordRepository;
 
     @Override
-    public void borrowBook(User user, Book book) {
+    public void borrowBook(String [] borrowData) {
+        String username = borrowData[1];
+        String bookTile =borrowData[2];
+
+        User user = userRepository.findByUsername(username);
+        Book book = bookRepository.findByTitle(bookTile);
+
+
+
         if (book.getBookStatus() == BookStatus.AVAILABLE){
             BorrowRecord borrowRecords = new BorrowRecord();
 

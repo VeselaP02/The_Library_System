@@ -20,8 +20,7 @@ public class LibraryBranchServiceImpl implements LibraryBranchService {
     }
 
     @Override
-    public LibraryBranch createLibraryBranch(String name, String location) {
-        LibraryBranch libraryBranch = new LibraryBranch(name,location);
+    public LibraryBranch createLibraryBranch(LibraryBranch libraryBranch) {
         return libraryBranchRepository.save(libraryBranch);
     }
 

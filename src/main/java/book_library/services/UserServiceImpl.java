@@ -19,17 +19,14 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User registerUser(RegisterDTO registerData) {
+    public User registerUser(User user) {
 
-        ModelMapper mapper = new ModelMapper();
-        User userToRegister = mapper.map(registerData, User.class);
-
-        User userByUsername = this.userRepository.findByUsername(userToRegister.getUsername());
+        User userByUsername = this.userRepository.findByUsername(user.getUsername());
         if (userByUsername != null) {
             throw new UserAlreadyExistsException(USER_EXISTS_EXCEPTION);
         }
 
-           return userRepository.save(userToRegister);
+           return userRepository.save(user);
 
     }
 

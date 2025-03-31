@@ -5,7 +5,7 @@ import book_library.entities.User;
 
 public interface UserService {
 
-    User registerUser(RegisterDTO registerData);
+    User registerUser(User user);
 
     User findByUsername(String username);
 

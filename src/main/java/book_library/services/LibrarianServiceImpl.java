@@ -26,10 +26,8 @@ public class LibrarianServiceImpl implements LibrarianService {
 
 
     @Override
-    public Librarian addLibrarian(String firstName, String lastName, String email, LibraryBranch branch, Long branchId) {
-        LibraryBranch libraryBranch = libraryBranchRepository.findById(branchId).orElseThrow(() -> new RuntimeException("Library branch not found"));
-
-        Librarian librarian = new Librarian(firstName,lastName,email,libraryBranch);
+    public Librarian addLibrarian(Librarian librarian) {
+        LibraryBranch libraryBranch = libraryBranchRepository.findById(librarian.getId()).orElseThrow(() -> new RuntimeException("Library branch not found"));
         this.librarianRepository.save(librarian);
         return null;
     }

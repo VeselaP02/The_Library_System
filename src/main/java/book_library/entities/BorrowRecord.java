@@ -3,6 +3,7 @@ package book_library.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Entity
 @Table(name = "borrow_records")

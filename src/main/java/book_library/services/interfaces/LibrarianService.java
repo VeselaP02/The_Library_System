@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface LibrarianService {
-    Librarian addLibrarian(String firstName, String lastName, String email, LibraryBranch branch,Long branchId);
+    Librarian addLibrarian(Librarian librarian);
 
     List<Librarian> getLibrariansByBranch(Long branchId);
 

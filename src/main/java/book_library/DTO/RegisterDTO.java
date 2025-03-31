@@ -16,6 +16,12 @@ public class RegisterDTO {
 
     private String confirmPassword;
 
+    public RegisterDTO(String [] userData) {
+        this.username = userData[1];
+        this.password = userData[2];
+        this.confirmPassword = userData[3];
+    }
+
     public void  validate(){
 
         usernameValidation();
