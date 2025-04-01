@@ -45,12 +45,12 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author deleteAuthor(Author author) {
+    public void deleteAuthor(Author author) {
         Author searchAuthor = authorRepository.findByFirstNameAndLastNameIgnoreCase(author.getFirstName(), author.getLastName());
 
         if (searchAuthor == null){
             throw new NotFoundAuthorException(String.format(NOT_FOUND_AUTHOR_EXCEPTION,author.getFirstName(),author.getLastName()));
         }
-        return authorRepository.deleteByAuthor(author);
+        authorRepository.deleteById(author.getId());
     }
 }

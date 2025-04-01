@@ -21,6 +21,5 @@ public interface AuthorRepository extends JpaRepository<Author,Long> {
     @Query("SELECT DISTINCT a FROM Author a JOIN a.books b WHERE b.releaseDate > :date")
     List<Author> findByReleaseDateAfter(@Param("date") LocalDate date);
 
-    Author deleteByAuthor(Author author);
 
 }

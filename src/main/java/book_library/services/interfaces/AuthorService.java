@@ -12,7 +12,7 @@ public interface AuthorService {
 
     Author getAuthorByFullName(String firstName,String lastName);
 
-    Author deleteAuthor(Author author);
+    void deleteAuthor(Author author);
 
 
 
