@@ -16,9 +16,9 @@ public class AddLibrarianDTO {
     private String email;
 
     public AddLibrarianDTO(String [] librarianData) {
-        this.firstName = librarianData[1];
-        this.lastName = librarianData[2];
-        this.setEmail(librarianData[3]);
+        this.firstName = librarianData[0];
+        this.lastName = librarianData[1];
+        this.setEmail(librarianData[2]);
     }
 
     public String getFirstName() {

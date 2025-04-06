@@ -11,10 +11,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+import static book_library.enums.CommandsMessages.*;
 import static book_library.enums.ConsoleMessages.*;
 
 @Component
-public class ConsoleRunner implements CommandLineRunner {
+public class LibrarySystemRunner implements CommandLineRunner {
 
     Scanner scanner = new Scanner(System.in);
 
@@ -37,7 +38,7 @@ public class ConsoleRunner implements CommandLineRunner {
 
 
     @Autowired
-    public ConsoleRunner(UserService userService, BookService bookService, BorrowRecordsService borrowRecordsService, AuthorService authorService, LibraryBranchService libraryBranchService, SeedService seedService, LibrarianService librarianService) {
+    public LibrarySystemRunner(UserService userService, BookService bookService, BorrowRecordsService borrowRecordsService, AuthorService authorService, LibraryBranchService libraryBranchService, SeedService seedService, LibrarianService librarianService) {
         this.userService = userService;
         this.bookService = bookService;
         this.borrowRecordsService = borrowRecordsService;
@@ -51,22 +52,24 @@ public class ConsoleRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        this.seedService.seedAuthors();
         System.out.println("Please insert your command:");
 
         String commandName = scanner.nextLine();
 
         while (!commandName.equals("END")) {
             String result = switch (commandName) {
-                case "ADD_AUTHOR" -> addAuthor(addAuthorData());
-                case "GET_AUTHOR" -> getAuthor(getAuthorData());
-                case "DELETE_AUTHOR" -> deleteAuthor(getAuthorData());
-                case "ADD_BOOK" -> addBook(addBookData());
-                case "DELETE_BOOK" -> deleteBook(getBookData());
-                case "ADD_USER" -> registerUser(addUserData());
-                case "DELETE_USER" -> deleteUser(getUserDeleteData());
-                case "ADD_BORROW_RECORD" -> addBorrowRecord(addBorrowRecordData());
-                case "ADD_LIBRARY_BRANCH" -> addLibraryBranch(addLibraryBranchData());
-                case "ADD_LIBRARIAN" -> addLibrarian(addLibrarianData());
+                case ADD_AUTHOR -> addAuthor(addAuthorData());
+                case GET_AUTHOR -> getAuthor(getAuthorData());
+                case DELETE_AUTHOR -> deleteAuthor(getAuthorData());
+                case ADD_BOOK -> addBook(addBookData());
+                case DELETE_BOOK -> deleteBook(getBookData());
+                case REGISTER_USER -> registerUser(addUserData());
+                case DELETE_USER -> deleteUser(getUserDeleteData());
+                case ADD_BORROW_RECORD -> addBorrowRecord(addBorrowRecordData());
+                case ADD_LIBRARY_BRANCH -> addLibraryBranch(addLibraryBranchData());
+                case ADD_LIBRARIAN -> addLibrarian(addLibrarianData());
                 default -> "No such command";
             };
 

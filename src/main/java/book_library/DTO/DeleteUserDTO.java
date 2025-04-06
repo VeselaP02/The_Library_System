@@ -5,7 +5,7 @@ public class DeleteUserDTO {
     private String username;
 
     public DeleteUserDTO(String [] userData) {
-        this.username = userData[1];
+        this.username = userData[0];
     }
 
     public String getUsername() {

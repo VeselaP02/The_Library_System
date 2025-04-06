@@ -7,8 +7,8 @@ public class LibraryBranchDTO {
     private String location;
 
     public LibraryBranchDTO(String [] libraryBranchData) {
-        this.name = libraryBranchData[1];
-        this.location = libraryBranchData[2];
+        this.name = libraryBranchData[0];
+        this.location = libraryBranchData[1];
     }
 
     public String getName() {
