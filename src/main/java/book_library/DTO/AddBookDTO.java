@@ -1,12 +1,10 @@
 package book_library.DTO;
 
-import book_library.enums.Genre;
-
-public class BookDTO {
+public class AddBookDTO {
 
     private String title;
 
-    public BookDTO(String [] bookData) {
+    public AddBookDTO(String [] bookData) {
         this.title = bookData[1];
     }
 

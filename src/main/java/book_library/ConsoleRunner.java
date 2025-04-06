@@ -90,7 +90,7 @@ public class ConsoleRunner implements CommandLineRunner {
         return new String []{username};
     }
     private String deleteBook(String [] bookData){
-        BookDTO bookDTO = new BookDTO(bookData);
+        AddBookDTO bookDTO = new AddBookDTO(bookData);
         Book book = mapper.map(bookDTO, Book.class);
         bookService.deleteBook(book.getId());
 
@@ -107,7 +107,7 @@ public class ConsoleRunner implements CommandLineRunner {
 
 
     private String deleteAuthor(String[] authorData) {
-        AuthorDTO findAuthor = new AuthorDTO(authorData);
+        AddAuthorDTO findAuthor = new AddAuthorDTO(authorData);
 
         Author author = mapper.map(findAuthor,Author.class);
         authorService.deleteAuthor(author);
@@ -117,7 +117,7 @@ public class ConsoleRunner implements CommandLineRunner {
 
 
     private String getAuthor(String[] authorData) {
-        AuthorDTO findAuthor = new AuthorDTO(authorData);
+        AddAuthorDTO findAuthor = new AddAuthorDTO(authorData);
 
         Author author = mapper.map(findAuthor,Author.class);
         authorService.getAuthorByFullName(author.getFirstName(),author.getLastName());
@@ -126,7 +126,7 @@ public class ConsoleRunner implements CommandLineRunner {
 
 
     private String addAuthor(String[] data) {
-        AuthorDTO authorData = new AuthorDTO(data);
+        AddAuthorDTO authorData = new AddAuthorDTO(data);
 
         Author addedAuthor = mapper.map(authorData,Author.class);
         authorService.addAuthor(addedAuthor);
@@ -160,7 +160,7 @@ public class ConsoleRunner implements CommandLineRunner {
     }
 
     private String addBook(String[] data) {
-        BookDTO bookData = new BookDTO(data);
+        AddBookDTO bookData = new AddBookDTO(data);
         Book addedBook = mapper.map(bookData, Book.class);
         bookService.addBook(addedBook);
         return String.format(ADDED_BOOK_SUCCESSFULLY, addedBook.getTitle());
@@ -231,7 +231,7 @@ public class ConsoleRunner implements CommandLineRunner {
     }
 
     private String addLibrarian(String[] data) {
-        LibrarianDTO librarianData = new LibrarianDTO(data);
+        AddLibrarianDTO librarianData = new AddLibrarianDTO(data);
         Librarian librarian = mapper.map(librarianData, Librarian.class);
         librarianService.addLibrarian(librarian);
         return String.format(ADDED_LIBRARIAN_SUCCESSFULLY, librarian.getFirstName(), librarian.getLastName());

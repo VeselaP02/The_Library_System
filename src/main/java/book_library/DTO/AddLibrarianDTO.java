@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import static book_library.enums.ExceptionMessages.EMAIL_EXCEPTION;
 
-public class LibrarianDTO {
+public class AddLibrarianDTO {
 
     private String firstName;
 
@@ -15,7 +15,7 @@ public class LibrarianDTO {
 
     private String email;
 
-    public LibrarianDTO(String [] librarianData) {
+    public AddLibrarianDTO(String [] librarianData) {
         this.firstName = librarianData[1];
         this.lastName = librarianData[2];
         this.setEmail(librarianData[3]);
