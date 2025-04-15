@@ -2,6 +2,7 @@ package book_library.services;
 
 import book_library.DTO.RegisterDTO;
 import book_library.entities.User;
+import book_library.exceptions.authors.NotFoundAuthorException;
 import book_library.exceptions.registration.NotUserFoundException;
 import book_library.exceptions.registration.UserAlreadyExistsException;
 import book_library.repositories.UserRepository;
@@ -15,8 +16,12 @@ import static book_library.enums.ExceptionMessages.*;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final UserRepository userRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User registerUser(User user) {
@@ -48,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long userId) {
         if (!userRepository.existsById(userId)) {
-            throw new RuntimeException("User not found");
+            throw new NotFoundAuthorException(NOT_USER_FOUND_EXCEPTION);
         }
         userRepository.deleteById(userId);
     }

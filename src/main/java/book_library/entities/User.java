@@ -14,7 +14,7 @@ public class User extends BaseEntitiesWithLongId {
     @Column(unique = true,nullable = false)
     private String username;
 
-    @Column(nullable = false)
+    @Column(unique = true,nullable = false)
     private String password;
 
     @Column(name = "registration_data")
@@ -22,7 +22,7 @@ public class User extends BaseEntitiesWithLongId {
 
     private String address;
 
-    @Column(name = "phone_number",nullable = false)
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @Column(name = "last_logged_in")
@@ -31,7 +31,7 @@ public class User extends BaseEntitiesWithLongId {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<BorrowRecord> borrowRecords;
 
-    @ManyToOne(optional = false)
+    @ManyToOne()
     private LibraryBranch libraryBranch;
 
     public User() {

@@ -15,7 +15,7 @@ import static book_library.enums.CommandsMessages.*;
 import static book_library.enums.ConsoleMessages.*;
 
 @Component
-public class LibrarySystemRunner implements CommandLineRunner {
+public class BookLibraryRunner implements CommandLineRunner {
 
     Scanner scanner = new Scanner(System.in);
 
@@ -38,7 +38,7 @@ public class LibrarySystemRunner implements CommandLineRunner {
 
 
     @Autowired
-    public LibrarySystemRunner(UserService userService, BookService bookService, BorrowRecordsService borrowRecordsService, AuthorService authorService, LibraryBranchService libraryBranchService, SeedService seedService, LibrarianService librarianService) {
+    public BookLibraryRunner(UserService userService, BookService bookService, BorrowRecordsService borrowRecordsService, AuthorService authorService, LibraryBranchService libraryBranchService, SeedService seedService, LibrarianService librarianService) {
         this.userService = userService;
         this.bookService = bookService;
         this.borrowRecordsService = borrowRecordsService;
