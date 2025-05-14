@@ -48,7 +48,7 @@ public class AuthorServiceImpl implements AuthorService {
     public void deleteAuthor(Author author) {
         Author searchAuthor = authorRepository.findByFirstNameAndLastNameIgnoreCase(author.getFirstName(), author.getLastName());
 
-        if (searchAuthor == null){
+        if (searchAuthor == null || searchAuthor.getFirstName().isEmpty() && searchAuthor.getLastName().isEmpty()){
             throw new NotFoundAuthorException(String.format(NOT_FOUND_AUTHOR_EXCEPTION,author.getFirstName(),author.getLastName()));
         }
         authorRepository.deleteById(author.getId());

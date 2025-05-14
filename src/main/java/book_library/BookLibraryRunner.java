@@ -79,7 +79,7 @@ public class BookLibraryRunner implements CommandLineRunner {
         }
     }
 
-    private String deleteUser(String [] userData){
+    public String deleteUser(String [] userData){
         DeleteUserDTO deleteUserDTO = new DeleteUserDTO(userData);
 
         return String.format(DELETE_USER_SUCCESSFULLY,deleteUserDTO.getUsername());
@@ -92,7 +92,7 @@ public class BookLibraryRunner implements CommandLineRunner {
 
         return new String []{username};
     }
-    private String deleteBook(String [] bookData){
+    public String deleteBook(String [] bookData){
         AddBookDTO bookDTO = new AddBookDTO(bookData);
         Book book = mapper.map(bookDTO, Book.class);
         bookService.deleteBook(book.getId());
@@ -109,7 +109,7 @@ public class BookLibraryRunner implements CommandLineRunner {
     }
 
 
-    private String deleteAuthor(String[] authorData) {
+    public String deleteAuthor(String[] authorData) {
         AddAuthorDTO findAuthor = new AddAuthorDTO(authorData);
 
         Author author = mapper.map(findAuthor,Author.class);
@@ -119,7 +119,7 @@ public class BookLibraryRunner implements CommandLineRunner {
     }
 
 
-    private String getAuthor(String[] authorData) {
+    public String getAuthor(String[] authorData) {
         AddAuthorDTO findAuthor = new AddAuthorDTO(authorData);
 
         Author author = mapper.map(findAuthor,Author.class);
@@ -128,7 +128,7 @@ public class BookLibraryRunner implements CommandLineRunner {
     }
 
 
-    private String addAuthor(String[] data) {
+    public String addAuthor(String[] data) {
         AddAuthorDTO authorData = new AddAuthorDTO(data);
 
         Author addedAuthor = mapper.map(authorData,Author.class);
@@ -162,7 +162,7 @@ public class BookLibraryRunner implements CommandLineRunner {
         return new String[]{firstName,lastName};
     }
 
-    private String addBook(String[] data) {
+    public String addBook(String[] data) {
         AddBookDTO bookData = new AddBookDTO(data);
         Book addedBook = mapper.map(bookData, Book.class);
         bookService.addBook(addedBook);
@@ -176,7 +176,7 @@ public class BookLibraryRunner implements CommandLineRunner {
         return new String[]{title};
     }
 
-    private String registerUser(String[] data) {
+    public String registerUser(String[] data) {
         RegisterDTO userData = new RegisterDTO(data);
         userData.validate();
         User addedUser = mapper.map(userData, User.class);
@@ -197,7 +197,7 @@ public class BookLibraryRunner implements CommandLineRunner {
         return new String[]{username,password,confirmPassword};
     }
 
-    private String addBorrowRecord(String[] data) {
+    public String addBorrowRecord(String[] data) {
         BorrowRecordDTO borrowRecordDTO = new BorrowRecordDTO(data);
         borrowRecordsService.borrowBook(borrowRecordDTO);
         return ADDED_BORROW_RECORD_SUCCESSFULLY;
@@ -216,11 +216,11 @@ public class BookLibraryRunner implements CommandLineRunner {
         return new String[]{userId, bookId};
     }
 
-    private String addLibraryBranch(String[] data) {
+    public String addLibraryBranch(String[] data) {
         LibraryBranchDTO branchData = new LibraryBranchDTO(data);
         LibraryBranch branch = mapper.map(branchData, LibraryBranch.class);
         libraryBranchService.createLibraryBranch(branch);
-        return String.format(ADDED_LIBRARY_BRANCH_SUCCESSFULLY, branch.getName());
+        return String.format(ADDED_LIBRARY_BRANCH_SUCCESSFULLY, branch.getName(),branch.getLocation());
     }
 
     private String[] addLibraryBranchData() {
@@ -230,10 +230,10 @@ public class BookLibraryRunner implements CommandLineRunner {
 
         System.out.println(BRANCH_LOCATION);
         String location = scanner.nextLine();
-        return new String[]{name};
+        return new String[]{name,location};
     }
 
-    private String addLibrarian(String[] data) {
+    public String addLibrarian(String[] data) {
         AddLibrarianDTO librarianData = new AddLibrarianDTO(data);
         Librarian librarian = mapper.map(librarianData, Librarian.class);
         librarianService.addLibrarian(librarian);
@@ -246,6 +246,8 @@ public class BookLibraryRunner implements CommandLineRunner {
         String firstName = scanner.nextLine();
         System.out.print(LAST_NAME);
         String lastName = scanner.nextLine();
-        return new String[]{firstName, lastName};
+        System.out.println(EMAIL);
+        String email = scanner.nextLine();
+        return new String[]{firstName, lastName,email};
     }
 }

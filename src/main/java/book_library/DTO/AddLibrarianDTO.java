@@ -36,7 +36,7 @@ public class AddLibrarianDTO {
     public void setEmail(String email) {
         String email_regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         Pattern emailPattern = Pattern.compile(email_regex);
-        Matcher emailMatcher = emailPattern.matcher(this.email);
+        Matcher emailMatcher = emailPattern.matcher(email);
 
         if (!emailMatcher.matches()){
             throw new IncorrectEmailException(EMAIL_EXCEPTION);

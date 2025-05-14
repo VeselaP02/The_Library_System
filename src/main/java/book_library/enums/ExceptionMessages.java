@@ -8,6 +8,7 @@ public enum ExceptionMessages {
     public static final String CONFIRMATION_PASSWORD_EXCEPTION = "Password and Confirmation Password wan not match!";
 
     public static final String USERNAME_EXCEPTION = "Username is not correct!";
+    public static final String LIBRARY_BRANCH_EXCEPTION = "Library branch does not exist";
 
     public static final String PASSWORD_DIGIT_EXCEPTION = "Password must must contain at least 1 digit!";
 

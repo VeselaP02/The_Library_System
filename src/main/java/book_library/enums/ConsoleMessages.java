@@ -30,5 +30,6 @@ public enum ConsoleMessages {
     public static final String BOOK_EXCEPTION = "Book is not available!";
     public static final String DELETE_BOOK_SUCCESSFULLY = "The book %s was deleted!";
     public static final String DELETE_USER_SUCCESSFULLY = "The user %s was deleted!";
+    public static final String EMAIL = "Email: %s";
 
 }
