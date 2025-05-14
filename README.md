@@ -8,7 +8,7 @@ Welcome to Book Library — a powerful and structured Library Management System 
 ----------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------
 
-📝 Project Description 
+### 📝 **_Project Description_** 
 
 Book Library System is a library data management application developed with Java and Spring Boot, simulating the functionality of a real-life library. The system allows adding, editing, and deleting books, authors, users, library branches, and staff members.
 
@@ -16,7 +16,7 @@ As the administrator, you have full control over the database and can perform al
 
 ----------------------------------------------------------------------------------------
 
-📚 Main Modules & Features
+### 📚 **_Main Modules & Features_**
 
 🗃️ Books & Authors
 
@@ -54,7 +54,7 @@ Custom exceptions with unified error messages.
 
 ----------------------------------------------------------------------------------------
 
-🛠️ Technologies Used
+### 🛠️ **_Technologies Used_**
 
 Java (OOP principles, SOLID, Design Patterns)
 
@@ -80,7 +80,7 @@ Mockito — mocking repositories/services in tests
 
 ----------------------------------------------------------------------------------------
 
-🚀 Project Status
+### 🚀 _**Project Status**_
 
 ✅ Console Application —  Finished
 
@@ -93,12 +93,13 @@ Mockito — mocking repositories/services in tests
 
 ----------------------------------------------------------------------------------------
 
-🧩 Project Structure
+### 🧩 **_Project Structure_**
+
 ![img.png](img.png)
 
 ----------------------------------------------------------------------------------------
 
-👨‍💻 Author
+### 👨‍💻 **_Author_**
 
 [Vesela Petkova]
 
