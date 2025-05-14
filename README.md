@@ -5,12 +5,16 @@
 Your personal  library management system!
 
 Welcome to Book Library — a powerful and structured Library Management System developed with Java and Spring Boot. This application allows you to manage books, authors, users, librarians, borrow records, and library branches. Whether you're building a real library app or practicing enterprise-level architecture — this is the project for you!
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
 
 📝 Project Description 
 
 Book Library System is a library data management application developed with Java and Spring Boot, simulating the functionality of a real-life library. The system allows adding, editing, and deleting books, authors, users, library branches, and staff members.
 
 As the administrator, you have full control over the database and can perform all essential operations related to library management. The application is designed with a strong focus on clean architecture and follows best programming practices.
+
+----------------------------------------------------------------------------------------
 
 📚 Main Modules & Features
 
@@ -48,7 +52,7 @@ Rigorous input validation using DTO classes.
 
 Custom exceptions with unified error messages.
 
-
+----------------------------------------------------------------------------------------
 
 🛠️ Technologies Used
 
@@ -74,6 +78,8 @@ JUnit 4 — Unit Testing
 
 Mockito — mocking repositories/services in tests
 
+----------------------------------------------------------------------------------------
+
 🚀 Project Status
 
 ✅ Console Application —  Finished
@@ -85,10 +91,12 @@ Mockito — mocking repositories/services in tests
 ✅ Documentation & Code Comments — Done
 
 
-
+----------------------------------------------------------------------------------------
 
 🧩 Project Structure
 ![img.png](img.png)
+
+----------------------------------------------------------------------------------------
 
 👨‍💻 Author
 
