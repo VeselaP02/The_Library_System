@@ -79,11 +79,11 @@ public class BookLibraryRunnerNegativeTests {
 
     @Test
     void deleteAuthor_ShouldThrowException_WhenAuthorDoesNotExist() {
-        String[] authorData = {null, null};
+        String[] authorData = {"Jake", "Smith"};
         AddAuthorDTO findAuthor = new AddAuthorDTO(authorData);
         Author author = new Author();
-        author.setFirstName(null);
-        author.setLastName(null);
+        author.setFirstName("Jake");
+        author.setLastName("Smith");
 
         when(mapper.map(any(AddAuthorDTO.class),eq(Author.class))).thenReturn(author);
         doThrow(new NotFoundAuthorException("The author   was not found")).when(authorService).deleteAuthor(author);
