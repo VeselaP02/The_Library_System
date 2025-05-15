@@ -3,6 +3,7 @@ package book_library.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Optional;
 
 @Entity
@@ -93,5 +94,18 @@ public class BorrowRecord {
 
     public void setLibraryBranch(LibraryBranch libraryBranch) {
         this.libraryBranch = libraryBranch;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BorrowRecord)) return false;
+        BorrowRecord that = (BorrowRecord) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

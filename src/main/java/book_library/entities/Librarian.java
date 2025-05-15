@@ -3,6 +3,7 @@ package book_library.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -72,4 +73,17 @@ public class Librarian extends BaseEntitiesWithLongId{
         public void setBorrowRecords(Set<BorrowRecord> borrowRecords) {
                 this.borrowRecords = borrowRecords;
         }
-    }
+
+        @Override
+        public boolean equals(Object o) {
+                if (this == o) return true;
+                if (!(o instanceof Librarian)) return false;
+                Librarian librarian = (Librarian) o;
+                return email.equals(librarian.email);
+        }
+
+        @Override
+        public int hashCode() {
+                return Objects.hash(email);
+        }
+}
