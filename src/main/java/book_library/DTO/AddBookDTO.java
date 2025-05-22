@@ -1,7 +1,6 @@
 package book_library.DTO;
 
 public class AddBookDTO {
-
     private String title;
 
     public AddBookDTO(String [] bookData) {

@@ -58,6 +58,7 @@ public class BookLibraryRunner implements CommandLineRunner {
 
         String commandName = scanner.nextLine();
 
+
         while (!commandName.equals("END")) {
             String result = switch (commandName) {
                 case ADD_AUTHOR -> addAuthor(addAuthorData());

@@ -8,11 +8,7 @@ import java.util.Optional;
 
 @Entity
 @Table(name = "borrow_records")
-public class BorrowRecord {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class BorrowRecord extends BaseEntitiesWithLongId {
 
     @ManyToOne
     @JoinColumn(name = "book_id",nullable = false)
@@ -38,14 +34,6 @@ public class BorrowRecord {
     public BorrowRecord(Book book, User user) {
         this.book = book;
         this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Book getBook() {
@@ -101,11 +89,11 @@ public class BorrowRecord {
         if (this == o) return true;
         if (!(o instanceof BorrowRecord)) return false;
         BorrowRecord that = (BorrowRecord) o;
-        return id.equals(that.id);
+        return this.getId().equals(that.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(getId());
     }
 }

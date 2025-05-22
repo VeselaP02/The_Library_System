@@ -1,7 +1,6 @@
 package book_library.DTO;
 
 public class AddAuthorDTO {
-
     private String firstName;
 
     private String lastName;

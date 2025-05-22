@@ -57,7 +57,6 @@ public class RegisterDTO {
         }
     }
 
-
     public String getUsername() {
         return username;
     }
