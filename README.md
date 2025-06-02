@@ -62,8 +62,6 @@ Spring Boot (Core Framework)
 
 Spring Data JPA (Database access)
 
-Spring Web (REST API) — for the future web version
-
 Spring Validation — for DTO checks
 
 Hibernate ORM
@@ -85,8 +83,6 @@ Mockito — mocking repositories/services in tests
 ✅ Console Application —  Finished
 
 ✅ Unit Tests — Finished with service & logic layer tests (mocked where needed)
-
-🚧 REST API (Web Application) — In progress (future feature)
 
 ✅ Documentation & Code Comments — Done
 
