@@ -2,6 +2,8 @@ package book_library;
 
 import book_library.DTO.*;
 import book_library.entities.*;
+import book_library.models.DTO.*;
+import book_library.models.entities.*;
 import book_library.services.interfaces.*;
 import book_library.services.seed.SeedService;
 import org.modelmapper.ModelMapper;

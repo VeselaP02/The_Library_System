@@ -1,10 +1,9 @@
-package book_library.entities;
+package book_library.models.entities;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.Optional;
 
 @Entity
 @Table(name = "borrow_records")

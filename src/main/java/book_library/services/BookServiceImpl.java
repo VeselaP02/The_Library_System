@@ -1,6 +1,6 @@
 package book_library.services;
 
-import book_library.entities.Book;
+import book_library.models.entities.Book;
 import book_library.enums.BookStatus;
 import book_library.repositories.BookRepository;
 import book_library.services.interfaces.BookService;

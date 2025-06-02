@@ -1,15 +1,13 @@
 package book_library.services.seed;
 
-import book_library.DTO.AddAuthorDTO;
-import book_library.entities.Author;
-import book_library.entities.User;
+import book_library.models.DTO.AddAuthorDTO;
+import book_library.models.entities.Author;
 import book_library.repositories.AuthorRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import book_library.enums.Paths;
 
 import java.io.FileReader;
 import java.io.IOException;

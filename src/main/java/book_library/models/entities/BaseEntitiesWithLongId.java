@@ -1,4 +1,4 @@
-package book_library.entities;
+package book_library.models.entities;
 
 import jakarta.persistence.*;
 

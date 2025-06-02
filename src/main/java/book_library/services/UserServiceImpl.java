@@ -1,13 +1,11 @@
 package book_library.services;
 
-import book_library.DTO.RegisterDTO;
-import book_library.entities.User;
+import book_library.models.entities.User;
 import book_library.exceptions.authors.NotFoundAuthorException;
 import book_library.exceptions.registration.NotUserFoundException;
 import book_library.exceptions.registration.UserAlreadyExistsException;
 import book_library.repositories.UserRepository;
 import book_library.services.interfaces.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import static book_library.enums.ExceptionMessages.*;

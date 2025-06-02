@@ -1,12 +1,11 @@
 package book_library.services;
 
-import book_library.entities.Author;
+import book_library.models.entities.Author;
 import book_library.exceptions.authors.NotFoundAuthorException;
 import book_library.repositories.AuthorRepository;
 import book_library.services.interfaces.AuthorService;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import book_library.enums.ExceptionMessages.*;
 
 import static book_library.enums.ExceptionMessages.NOT_FOUND_AUTHOR_EXCEPTION;
 

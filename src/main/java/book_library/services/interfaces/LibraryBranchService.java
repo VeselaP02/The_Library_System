@@ -1,9 +1,8 @@
 package book_library.services.interfaces;
 
-import book_library.entities.LibraryBranch;
+import book_library.models.entities.LibraryBranch;
 
 import java.util.List;
-import java.util.Set;
 
 public interface LibraryBranchService {
     LibraryBranch createLibraryBranch(LibraryBranch libraryBranch);

@@ -1,4 +1,4 @@
-package book_library.DTO;
+package book_library.models.DTO;
 
 import book_library.exceptions.registration.*;
 

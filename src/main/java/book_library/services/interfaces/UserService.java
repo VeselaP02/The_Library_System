@@ -1,7 +1,6 @@
 package book_library.services.interfaces;
 
-import book_library.DTO.RegisterDTO;
-import book_library.entities.User;
+import book_library.models.entities.User;
 
 public interface UserService {
 

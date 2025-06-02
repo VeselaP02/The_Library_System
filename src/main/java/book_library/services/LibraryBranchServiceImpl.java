@@ -1,6 +1,6 @@
 package book_library.services;
 
-import book_library.entities.LibraryBranch;
+import book_library.models.entities.LibraryBranch;
 import book_library.exceptions.LibraryBranch.NotFoundLibraryBranchException;
 import book_library.repositories.LibraryBranchRepository;
 import book_library.services.interfaces.LibraryBranchService;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 import static book_library.enums.ExceptionMessages.LIBRARY_BRANCH_EXCEPTION;
 

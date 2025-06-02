@@ -1,6 +1,6 @@
 package book_library.services.interfaces;
 
-import book_library.entities.Book;
+import book_library.models.entities.Book;
 
 import java.util.List;
 

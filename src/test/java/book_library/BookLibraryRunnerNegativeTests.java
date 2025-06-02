@@ -1,11 +1,10 @@
 package book_library;
 
-import book_library.DTO.AddAuthorDTO;
-import book_library.entities.Author;
-import book_library.entities.Book;
-import book_library.entities.Librarian;
-import book_library.entities.LibraryBranch;
-import book_library.exceptions.Librarian.NoFoundLibrarianException;
+import book_library.models.DTO.AddAuthorDTO;
+import book_library.models.entities.Author;
+import book_library.models.entities.Book;
+import book_library.models.entities.Librarian;
+import book_library.models.entities.LibraryBranch;
 import book_library.exceptions.LibraryBranch.NotFoundLibraryBranchException;
 import book_library.exceptions.authors.NotFoundAuthorException;
 import book_library.exceptions.registration.ConfirmationPasswordException;
@@ -13,14 +12,11 @@ import book_library.repositories.LibraryBranchRepository;
 import book_library.services.interfaces.*;
 import book_library.services.seed.SeedService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.OngoingStubbing;
 import org.modelmapper.ModelMapper;
 
 import java.util.Optional;

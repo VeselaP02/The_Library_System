@@ -1,6 +1,6 @@
 package book_library.repositories;
 
-import book_library.entities.Author;
+import book_library.models.entities.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

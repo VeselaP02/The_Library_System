@@ -1,4 +1,4 @@
-package book_library.DTO;
+package book_library.models.DTO;
 
 public class BorrowRecordDTO {
 

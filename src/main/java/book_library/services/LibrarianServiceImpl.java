@@ -1,7 +1,7 @@
 package book_library.services;
 
-import book_library.entities.Librarian;
-import book_library.entities.LibraryBranch;
+import book_library.models.entities.Librarian;
+import book_library.models.entities.LibraryBranch;
 import book_library.exceptions.LibraryBranch.NotFoundLibraryBranchException;
 import book_library.repositories.LibrarianRepository;
 import book_library.repositories.LibraryBranchRepository;

@@ -1,7 +1,7 @@
 package book_library.repositories;
 
-import book_library.entities.Librarian;
-import book_library.entities.LibraryBranch;
+import book_library.models.entities.Librarian;
+import book_library.models.entities.LibraryBranch;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
